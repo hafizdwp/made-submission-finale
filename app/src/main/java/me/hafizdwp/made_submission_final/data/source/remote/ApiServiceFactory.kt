@@ -31,7 +31,7 @@ object ApiServiceFactory {
         .readTimeout(15, TimeUnit.SECONDS)
         .connectTimeout(15, TimeUnit.SECONDS)
 
-    inline fun <reified T> builder(baseUrl: String = Constant.BASE_URL): T =
+    inline fun <reified T> builder(baseUrl: String = BuildConfig.BASE_URL): T =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(mClient.build())

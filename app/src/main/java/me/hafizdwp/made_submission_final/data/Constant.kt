@@ -6,8 +6,6 @@ package me.hafizdwp.made_submission_final.data
  **/
 object Constant {
 
-    val BASE_URL = "https://api.themoviedb.org/3/"
-    val BASE_API_KEY = "7261f70f4cad7673c037d495bad44588"
     val BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/original"
 
     val PREF_LANGUAGE_API_QUERY = "pref_language_api_query"

@@ -1,6 +1,7 @@
 package me.hafizdwp.made_submission_final.data.source.remote.api
 
 import io.reactivex.Observable
+import me.hafizdwp.made_submission_final.BuildConfig
 import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.Constant
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
@@ -20,26 +21,26 @@ interface MovieApi {
 
     @GET("discover/movie?sort_by=popularity.desc")
     fun getPopularMovies(
-            @Query("api_key") apiKey: String = Constant.BASE_API_KEY,
+            @Query("api_key") apiKey: String = BuildConfig.BASE_API_KEY,
             @Query("language") language: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: "en-US"
     ): Observable<BaseApiModel<List<MovieResponse>>>
 
     @GET("genre/movie/list")
     fun getMoviesGenre(
-            @Query("api_key") apiKey: String = Constant.BASE_API_KEY,
+            @Query("api_key") apiKey: String = BuildConfig.BASE_API_KEY,
             @Query("language") language: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: "en-US"
     ): Observable<BaseApiModel<List<GenreResponse>>>
 
     @GET("movie/now_playing")
     fun getNowPlayingMovies(
-            @Query("api_key") apiKey: String = Constant.BASE_API_KEY,
+            @Query("api_key") apiKey: String = BuildConfig.BASE_API_KEY,
             @Query("language") language: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: "en-US"
     ): Observable<BaseApiModel<List<MovieResponse>>>
 
     @GET("movie/{movie_id}")
     fun getMovieDetail(
             @Path("movie_id") movieId: Int,
-            @Query("api_key") apiKey: String = Constant.BASE_API_KEY,
+            @Query("api_key") apiKey: String = BuildConfig.BASE_API_KEY,
             @Query("language") language: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: "en-US"
     ): Observable<MovieDetailResponse>
 }
