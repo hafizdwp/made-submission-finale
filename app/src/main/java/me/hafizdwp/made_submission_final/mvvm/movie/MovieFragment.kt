@@ -14,8 +14,8 @@ import me.hafizdwp.made_submission_final.SplashscreenViewModel
 import me.hafizdwp.made_submission_final.base.BaseFragment
 import me.hafizdwp.made_submission_final.data.Constant
 import me.hafizdwp.made_submission_final.data.Pref
-import me.hafizdwp.made_submission_final.data.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
 import me.hafizdwp.made_submission_final.mvvm.detail.DetailActivity
 import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.get

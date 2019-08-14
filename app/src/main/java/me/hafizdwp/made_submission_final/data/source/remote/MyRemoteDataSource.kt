@@ -4,13 +4,14 @@ import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.ApiServiceFactory
 import me.hafizdwp.made_submission_final.data.MyApiCallback
 import me.hafizdwp.made_submission_final.data.MyResponseCallback
-import me.hafizdwp.made_submission_final.data.api.MovieApi
-import me.hafizdwp.made_submission_final.data.api.TvShowApi
-import me.hafizdwp.made_submission_final.data.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowDetailResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.api.MovieApi
+import me.hafizdwp.made_submission_final.data.source.remote.api.TvShowApi
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.util.ext.onCallback
 
 /**

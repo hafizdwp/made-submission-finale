@@ -6,8 +6,8 @@ import kotlinx.android.synthetic.main.favorite_item.view.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
 import me.hafizdwp.made_submission_final.data.Constant
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieActionListener
 import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowActionListener

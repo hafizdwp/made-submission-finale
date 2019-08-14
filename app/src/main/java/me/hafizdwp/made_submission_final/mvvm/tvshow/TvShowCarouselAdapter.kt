@@ -4,7 +4,7 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 
 /**
  * @author hafizdwp

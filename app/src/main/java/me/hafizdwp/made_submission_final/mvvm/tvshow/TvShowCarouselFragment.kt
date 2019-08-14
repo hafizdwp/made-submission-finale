@@ -14,7 +14,7 @@ import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.movie_carousel_fragment.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.data.Constant
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.withArgs
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
 

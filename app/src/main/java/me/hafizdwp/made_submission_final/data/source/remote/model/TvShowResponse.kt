@@ -1,4 +1,4 @@
-package me.hafizdwp.made_submission_final.data.model
+package me.hafizdwp.made_submission_final.data.source.remote.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -10,31 +10,30 @@ import me.hafizdwp.made_submission_final.util.ext.fromJson
  * 10/07/19
  **/
 @Parcelize
-data class MovieResponse(
-    var vote_count: Int? = null,
-    var id: Int? = null,
-    var video: Boolean? = null,
-    var vote_average: Double? = null,
-    var title: String? = null,
-    var popularity: Double? = null,
-    var poster_path: String? = null,
-    var original_language: String? = null,
-    var original_title: String? = null,
+data class TvShowResponse(
+    var original_name: String? = null,
     var genre_ids: List<Int?>? = null,
+    var name: String? = null,
+    var popularity: Double? = null,
+    var origin_country: List<String?>? = null,
+    var vote_count: Int? = null,
+    var first_air_date: String? = null,
     var backdrop_path: String? = null,
-    var adult: Boolean? = null,
+    var original_language: String? = null,
+    var id: Int? = null,
+    var vote_average: Double? = null,
     var overview: String? = null,
-    var release_date: String? = null,
+    var poster_path: String? = null,
 
     // self-made variable
-    var listGenre: List<String>? = null
+    var listGenre: List<String>?
 ) : Parcelable {
     companion object {
-        fun from(favoriteTable: FavoriteTable): MovieResponse {
+        fun from(favoriteTable: FavoriteTable): TvShowResponse {
             with(favoriteTable) {
-                return MovieResponse(
+                return TvShowResponse(
                     id = movie_id,
-                    title = title,
+                    name = title,
                     poster_path = poster_path,
                     backdrop_path = backdrop_path,
                     listGenre = listGenre?.fromJson()

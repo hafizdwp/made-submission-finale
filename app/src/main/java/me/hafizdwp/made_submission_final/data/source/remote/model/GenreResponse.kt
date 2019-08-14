@@ -1,4 +1,4 @@
-package me.hafizdwp.made_submission_final.data.model
+package me.hafizdwp.made_submission_final.data.source.remote.model
 
 /**
  * @author hafizdwp

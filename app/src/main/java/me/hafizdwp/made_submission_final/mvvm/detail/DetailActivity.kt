@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseActivity
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.bundleTo
 import me.hafizdwp.made_submission_final.util.ext.startActivity
 

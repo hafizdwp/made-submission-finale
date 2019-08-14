@@ -1,7 +1,7 @@
 package me.hafizdwp.made_submission_final.mvvm.movie
 
 import android.os.Parcelable
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 
 /**
  * @author hafizdwp

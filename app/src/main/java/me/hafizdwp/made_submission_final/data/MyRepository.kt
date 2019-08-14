@@ -1,13 +1,13 @@
 package me.hafizdwp.made_submission_final.data
 
-import me.hafizdwp.made_submission_final.data.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowDetailResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.data.source.local.MyLocalDataSource
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
-import me.hafizdwp.made_submission_final.data.source.remote.MyDataSource
+import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.remote.MyRemoteDataSource
 
 /**
@@ -15,7 +15,8 @@ import me.hafizdwp.made_submission_final.data.source.remote.MyRemoteDataSource
  * 10/07/19
  **/
 open class MyRepository(val remoteDataSource: MyRemoteDataSource,
-                        val localDataSource: MyLocalDataSource) : MyDataSource {
+                        val localDataSource: MyLocalDataSource) :
+    MyDataSource {
 
     override fun getPopularMovies(callback: MyResponseCallback<List<MovieResponse>>) {
         remoteDataSource.getPopularMovies(callback)

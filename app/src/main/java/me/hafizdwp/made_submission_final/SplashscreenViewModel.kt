@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
 import me.hafizdwp.made_submission_final.data.MyResponseCallback
-import me.hafizdwp.made_submission_final.data.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.util.ext.call
 
 /**

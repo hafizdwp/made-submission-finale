@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.tvshow_item.view.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
 import me.hafizdwp.made_submission_final.data.Constant
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.visible
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
 

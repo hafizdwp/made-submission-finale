@@ -2,8 +2,8 @@ package me.hafizdwp.made_submission_final.data.source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.toJson
 
 /**

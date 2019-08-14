@@ -1,11 +1,11 @@
-package me.hafizdwp.made_submission_final.data.source.remote
+package me.hafizdwp.made_submission_final.data.source
 
 import me.hafizdwp.made_submission_final.data.MyResponseCallback
-import me.hafizdwp.made_submission_final.data.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowDetailResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 
 /**

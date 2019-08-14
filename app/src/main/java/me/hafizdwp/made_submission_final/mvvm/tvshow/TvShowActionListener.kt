@@ -1,7 +1,7 @@
 package me.hafizdwp.made_submission_final.mvvm.tvshow
 
 import android.os.Parcelable
-import me.hafizdwp.made_submission_final.data.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 
 /**
  * @author hafizdwp

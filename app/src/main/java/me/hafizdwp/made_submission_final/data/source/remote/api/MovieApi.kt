@@ -1,11 +1,11 @@
-package me.hafizdwp.made_submission_final.data.api
+package me.hafizdwp.made_submission_final.data.source.remote.api
 
 import io.reactivex.Observable
 import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.Constant
-import me.hafizdwp.made_submission_final.data.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.get
 import me.hafizdwp.made_submission_final.util.ext.prefs
 import retrofit2.http.GET

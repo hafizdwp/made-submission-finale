@@ -12,9 +12,8 @@ import kotlinx.android.synthetic.main.detail_fragment.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
 import me.hafizdwp.made_submission_final.data.Constant
-import me.hafizdwp.made_submission_final.data.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.model.TvShowDetailResponse
-import me.hafizdwp.made_submission_final.util.ext.gone
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
 import me.hafizdwp.made_submission_final.util.ext.stripIfNullOrEmpty
 import me.hafizdwp.made_submission_final.util.ext.toast
