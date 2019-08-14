@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.util.ext.call
 
@@ -27,7 +27,8 @@ class FavoriteViewModel(
 
     fun getFavoritedMovies() {
         startProgress.call()
-        mRepository.getMoviesFromFavorite(object : MyResponseCallback<List<FavoriteTable>> {
+        mRepository.getMoviesFromFavorite(object :
+            MyResponseCallback<List<FavoriteTable>> {
             override fun onDataAvailable(data: List<FavoriteTable>?) {
                 requestSuccess.call()
                 listMovieFavoritedLive.value = data
@@ -42,7 +43,8 @@ class FavoriteViewModel(
     }
 
     fun getFavoritedTvShows() {
-        mRepository.getTvShowsFromFavorite(object : MyResponseCallback<List<FavoriteTable>> {
+        mRepository.getTvShowsFromFavorite(object :
+            MyResponseCallback<List<FavoriteTable>> {
             override fun onDataAvailable(data: List<FavoriteTable>?) {
                 requestSuccess.call()
                 listTvShowFavoritedLive.value = data

@@ -1,9 +1,6 @@
 package me.hafizdwp.made_submission_final.data.source.remote
 
 import me.hafizdwp.made_submission_final.base.BaseApiModel
-import me.hafizdwp.made_submission_final.data.ApiServiceFactory
-import me.hafizdwp.made_submission_final.data.MyApiCallback
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.remote.api.MovieApi
 import me.hafizdwp.made_submission_final.data.source.remote.api.TvShowApi
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse

@@ -5,7 +5,7 @@ import android.os.AsyncTask
 import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.call
@@ -32,7 +32,8 @@ class TvShowViewModel(application: Application,
         mListTvShowsGenre.clear()
         mListTvShowsGenre.addAll(listMoviesGenre)
 
-        mRepository.getPopularTvShows(object : MyResponseCallback<List<TvShowResponse>> {
+        mRepository.getPopularTvShows(object :
+            MyResponseCallback<List<TvShowResponse>> {
             override fun onDataAvailable(data: List<TvShowResponse>?) {
                 MyAsyncTask().execute(data)
             }
@@ -50,7 +51,8 @@ class TvShowViewModel(application: Application,
 
     fun getOnAirTvShows() {
 
-        mRepository.getOnAirTvShows(object :MyResponseCallback<List<TvShowResponse>> {
+        mRepository.getOnAirTvShows(object :
+            MyResponseCallback<List<TvShowResponse>> {
             override fun onDataAvailable(data: List<TvShowResponse>?) {
                 listCarouselLive.value = data
             }

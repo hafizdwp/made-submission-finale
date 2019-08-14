@@ -1,6 +1,6 @@
 package me.hafizdwp.made_submission_final.data.source
 
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse

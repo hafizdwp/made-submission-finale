@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.util.ext.call
 
@@ -27,7 +27,8 @@ class SplashscreenViewModel(application: Application,
     }
 
     private fun getMoviesGenre() {
-        mRepository.getMoviesGenre(object : MyResponseCallback<List<GenreResponse>> {
+        mRepository.getMoviesGenre(object :
+            MyResponseCallback<List<GenreResponse>> {
             override fun onDataAvailable(data: List<GenreResponse>?) {
                 listMoviesGenre.postValue(data)
                 getTvShowsGenre()
@@ -43,7 +44,8 @@ class SplashscreenViewModel(application: Application,
 
     private fun getTvShowsGenre() {
 
-        mRepository.getTvShowsGenre(object : MyResponseCallback<List<GenreResponse>> {
+        mRepository.getTvShowsGenre(object :
+            MyResponseCallback<List<GenreResponse>> {
             override fun onDataAvailable(data: List<GenreResponse>?) {
                 listTvShowsGenre.postValue(data)
                 requestSuccess.call()

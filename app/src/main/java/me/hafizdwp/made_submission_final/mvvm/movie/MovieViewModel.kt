@@ -5,7 +5,7 @@ import android.os.AsyncTask
 import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.util.ext.call
@@ -32,7 +32,8 @@ class MovieViewModel(application: Application,
         mListMoviesGenre.clear()
         mListMoviesGenre.addAll(listMoviesGenre)
 
-        myRepository.getPopularMovies(object : MyResponseCallback<List<MovieResponse>> {
+        myRepository.getPopularMovies(object :
+            MyResponseCallback<List<MovieResponse>> {
             override fun onDataAvailable(data: List<MovieResponse>?) {
                 MyAsyncTask().execute(data)
             }
@@ -50,7 +51,8 @@ class MovieViewModel(application: Application,
 
     fun getNowPlayingMovies() {
 
-        myRepository.getNowPlayingMovies(object :MyResponseCallback<List<MovieResponse>> {
+        myRepository.getNowPlayingMovies(object :
+            MyResponseCallback<List<MovieResponse>> {
             override fun onDataAvailable(data: List<MovieResponse>?) {
                 listCarouselLive.value = data
             }

@@ -1,4 +1,4 @@
-package me.hafizdwp.made_submission_final.data
+package me.hafizdwp.made_submission_final.data.source.remote
 
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable

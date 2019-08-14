@@ -9,6 +9,7 @@ import me.hafizdwp.made_submission_final.data.source.local.MyLocalDataSource
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.remote.MyRemoteDataSource
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 
 /**
  * @author hafizdwp

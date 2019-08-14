@@ -1,6 +1,6 @@
 package me.hafizdwp.made_submission_final.data.source.local
 
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.local.dao.FavoriteDao
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.MyDataSource

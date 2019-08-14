@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
-import me.hafizdwp.made_submission_final.data.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
@@ -35,7 +35,8 @@ class DetailViewModel(
     fun getMovieDetail(movieId: Int) {
 
         startProgress.call()
-        mRepository.getMovieDetails(movieId, object : MyResponseCallback<MovieDetailResponse> {
+        mRepository.getMovieDetails(movieId, object :
+            MyResponseCallback<MovieDetailResponse> {
             override fun onDataAvailable(data: MovieDetailResponse?) {
                 requestSuccess.call()
                 detailMovieLive.value = data
@@ -52,7 +53,8 @@ class DetailViewModel(
     fun getTvShowDetail(tvShowId: Int) {
 
         startProgress.call()
-        mRepository.getTvShowDetails(tvShowId, object : MyResponseCallback<TvShowDetailResponse> {
+        mRepository.getTvShowDetails(tvShowId, object :
+            MyResponseCallback<TvShowDetailResponse> {
             override fun onDataAvailable(data: TvShowDetailResponse?) {
                 requestSuccess.call()
                 detailTvShowLive.value = data
@@ -93,7 +95,8 @@ class DetailViewModel(
 
     fun getMovieFromFavorite(movieId: Int) {
 
-        mRepository.getMovieFromFavorite(movieId, object : MyResponseCallback<FavoriteTable> {
+        mRepository.getMovieFromFavorite(movieId, object :
+            MyResponseCallback<FavoriteTable> {
             override fun onDataAvailable(data: FavoriteTable?) {
                 favoriteTableLive.value = data
             }
@@ -132,7 +135,8 @@ class DetailViewModel(
 
     fun getTvShowFromFavorite(tvShowId: Int) {
 
-        mRepository.getTvShowFromFavorite(tvShowId, object : MyResponseCallback<FavoriteTable> {
+        mRepository.getTvShowFromFavorite(tvShowId, object :
+            MyResponseCallback<FavoriteTable> {
             override fun onDataAvailable(data: FavoriteTable?) {
                 favoriteTableLive.value = data
             }

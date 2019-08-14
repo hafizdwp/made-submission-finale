@@ -1,8 +1,9 @@
-package me.hafizdwp.made_submission_final.data
+package me.hafizdwp.made_submission_final.data.source.remote
 
 import com.readystatesoftware.chuck.ChuckInterceptor
 import me.hafizdwp.made_submission_final.BuildConfig
 import me.hafizdwp.made_submission_final.MyApp
+import me.hafizdwp.made_submission_final.data.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
