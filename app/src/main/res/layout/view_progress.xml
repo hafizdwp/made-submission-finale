@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/progress"
+            android:layout_width="@dimen/dimens_60dp"
+            android:layout_height="@dimen/dimens_60dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimens_5dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/progress_anim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:src="@drawable/loading_bar_spinner" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimens_8dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="@dimen/dimens_32dp"
+            android:paddingTop="@dimen/dimens_12dp"
+            android:paddingRight="@dimen/dimens_32dp"
+            android:paddingBottom="@dimen/dimens_12dp"
+            android:text="@string/myprogressview_loading_message"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:background="@drawable/selector_button"
+            android:minHeight="0dp"
+            android:paddingLeft="@dimen/dimens_32dp"
+            android:paddingTop="@dimen/dimens_8dp"
+            android:paddingRight="@dimen/dimens_32dp"
+            android:paddingBottom="@dimen/dimens_8dp"
+            android:stateListAnimator="@null"
+            android:text="@string/myprogressview_tryagain"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+           />
+    </LinearLayout>
+
+</RelativeLayout>

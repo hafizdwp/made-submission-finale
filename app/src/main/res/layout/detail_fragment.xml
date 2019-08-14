@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Floating isFavorited-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/dimens_16dp"
+        android:src="@drawable/ic_favorite"
+        app:backgroundTint="#F9A825" />
+
+    <!--Root top content-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/colorAccent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <!-- Sebelumnya seperti ini -->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/imageBackdrop"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dimens_232dp"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--app:layout_collapseMode="parallax" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dimens_232dp"-->
+            <!--android:alpha="0.5"-->
+            <!--android:background="#000" />-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conslaTopContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--Sekarang seperti ini-->
+
+                <ImageView
+                    android:id="@+id/imageBackdrop"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimens_232dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimens_232dp"
+                    android:alpha="0.5"
+                    android:background="#000"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimens_16dp"
+                    android:layout_marginRight="@dimen/dimens_64dp"
+                    android:layout_marginBottom="@dimen/dimens_8dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textGaya1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:text="How To Train Your Dragon: The Hidden World" />
+
+                <TextView
+                    android:id="@+id/textGaya1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimens_16dp"
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    android:layout_marginBottom="@dimen/dimens_8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/textGenre1"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/textGaya2"
+                    app:layout_constraintWidth_default="wrap"
+                    tools:text="203203  popularity" />
+
+                <TextView
+                    android:id="@+id/textGaya2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimens_16dp"
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    android:layout_marginBottom="@dimen/dimens_8dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/textGenre1"
+                    app:layout_constraintLeft_toRightOf="@+id/textGaya1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintWidth_default="wrap"
+                    tools:text="1:44min" />
+
+                <TextView
+                    android:id="@+id/textGenre1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimens_16dp"
+                    android:layout_marginTop="@dimen/dimens_8dp"
+                    android:layout_marginRight="@dimen/dimens_8dp"
+                    android:layout_marginBottom="@dimen/dimens_16dp"
+                    android:background="@drawable/view_rounded"
+                    android:fontFamily="@font/lato_bold"
+                    android:paddingLeft="@dimen/dimens_12dp"
+                    android:paddingTop="@dimen/dimens_2dp"
+                    android:paddingRight="@dimen/dimens_12dp"
+                    android:paddingBottom="@dimen/dimens_2dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/textGenre2"
+                    app:layout_constraintWidth_default="wrap"
+                    tools:text="Comedy" />
+
+                <TextView
+                    android:id="@+id/textGenre2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dimens_8dp"
+                    android:background="@drawable/view_rounded"
+                    android:fontFamily="@font/lato_bold"
+                    android:paddingLeft="@dimen/dimens_12dp"
+                    android:paddingTop="@dimen/dimens_2dp"
+                    android:paddingRight="@dimen/dimens_12dp"
+                    android:paddingBottom="@dimen/dimens_2dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textGenre1"
+                    app:layout_constraintLeft_toRightOf="@+id/textGenre1"
+                    app:layout_constraintRight_toLeftOf="@+id/textGenre3"
+                    app:layout_constraintTop_toTopOf="@+id/textGenre1"
+                    app:layout_constraintWidth_default="wrap"
+                    tools:text="Comedy" />
+
+                <TextView
+                    android:id="@+id/textGenre3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/view_rounded"
+                    android:fontFamily="@font/lato_bold"
+                    android:paddingLeft="@dimen/dimens_12dp"
+                    android:paddingTop="@dimen/dimens_2dp"
+                    android:paddingRight="@dimen/dimens_12dp"
+                    android:paddingBottom="@dimen/dimens_2dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textGenre2"
+                    app:layout_constraintLeft_toRightOf="@+id/textGenre2"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textGenre2"
+                    app:layout_constraintWidth_default="wrap"
+                    tools:text="Comedy" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--root else content-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/conslaContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimens_16dp"
+            android:paddingBottom="@dimen/dimens_72dp">
+
+            <!--ProgressBar-->
+            <me.hafizdwp.made_submission_final.util.customview.MyProgressView
+                android:id="@+id/myProgressView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_16dp"
+                android:gravity="center"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:includeFontPadding="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/textVoteCount"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="7.6/10" />
+
+            <com.willy.ratingbar.ScaleRatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_8dp"
+                android:layout_marginLeft="@dimen/dimens_8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/textRating"
+                app:layout_constraintRight_toRightOf="@+id/textRating"
+                app:layout_constraintTop_toBottomOf="@+id/textRating"
+                app:srb_clearRatingEnabled="false"
+                app:srb_clickable="false"
+                app:srb_drawableEmpty="@drawable/ic_star_empty"
+                app:srb_drawableFilled="@drawable/ic_star_filled"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="1"
+                app:srb_numStars="5"
+                app:srb_scrollable="false"
+                app:srb_starHeight="@dimen/dimens_24dp"
+                app:srb_starPadding="0dp"
+                app:srb_starWidth="@dimen/dimens_24dp"
+                app:srb_stepSize="0.1" />
+
+            <TextView
+                android:id="@+id/textVoteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:includeFontPadding="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toRightOf="@+id/textRating"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1231" />
+
+            <TextView
+                android:id="@+id/textVoteCountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_32dp"
+                android:layout_marginRight="@dimen/dimens_32dp"
+                android:fontFamily="@font/lato_regular"
+                android:includeFontPadding="false"
+                android:padding="@dimen/dimens_4dp"
+                android:text="@string/vote_count"
+                app:layout_constraintLeft_toLeftOf="@+id/textVoteCount"
+                app:layout_constraintRight_toRightOf="@id/textVoteCount"
+                app:layout_constraintTop_toBottomOf="@+id/textVoteCount" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPhoto"
+                android:layout_width="@dimen/dimens_96dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dimens_24dp"
+                app:cardCornerRadius="@dimen/dimens_8dp"
+                app:layout_constraintDimensionRatio="3:4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar">
+
+                <ImageView
+                    android:id="@+id/imagePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    tools:background="#1d1d1d" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textReleaseLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginLeft="@dimen/dimens_16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/release_date"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintLeft_toRightOf="@+id/cardPhoto"
+                app:layout_constraintTop_toTopOf="@+id/cardPhoto" />
+
+            <TextView
+                android:id="@+id/textRelease"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginLeft="@dimen/dimens_16dp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toRightOf="@+id/textReleaseLabel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textReleaseLabel"
+                app:layout_constraintWidth_default="wrap"
+                tools:text="2019-01-01" />
+
+            <TextView
+                android:id="@+id/textRevenueLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginLeft="@dimen/dimens_16dp"
+                android:layout_marginTop="@dimen/dimens_8dp"
+                android:layout_marginEnd="@dimen/dimens_8dp"
+                android:layout_marginRight="@dimen/dimens_8dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/revenue"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintLeft_toRightOf="@+id/cardPhoto"
+                app:layout_constraintRight_toLeftOf="@+id/textRevenue"
+                app:layout_constraintTop_toBottomOf="@+id/textRelease" />
+
+            <TextView
+                android:id="@+id/textRevenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_8dp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="@+id/textRelease"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textRelease"
+                app:layout_constraintWidth_default="wrap"
+                tools:text="US$ 123123123" />
+
+            <TextView
+                android:id="@+id/textTaglineLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginLeft="@dimen/dimens_16dp"
+                android:layout_marginTop="@dimen/dimens_8dp"
+                android:layout_marginEnd="@dimen/dimens_8dp"
+                android:layout_marginRight="@dimen/dimens_8dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/tagline"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintLeft_toRightOf="@+id/cardPhoto"
+                app:layout_constraintRight_toLeftOf="@+id/textTagline"
+                app:layout_constraintTop_toBottomOf="@+id/textRevenueLabel" />
+
+            <TextView
+                android:id="@+id/textTagline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="@+id/textRelease"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textTaglineLabel"
+                app:layout_constraintWidth_default="wrap"
+                tools:text="He's coming from home?" />
+
+            <!--Overview-->
+            <TextView
+                android:id="@+id/textOverviewLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/overview"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardPhoto" />
+
+            <TextView
+                android:id="@+id/textOverview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textOverviewLabel"
+                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

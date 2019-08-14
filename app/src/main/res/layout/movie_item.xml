@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dimens_12dp"
+    android:layout_marginTop="@dimen/dimens_4dp"
+    android:layout_marginRight="@dimen/dimens_12dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/dimens_8dp"
+    app:cardUseCompatPadding="true"
+    tools:ignore="ContentDescription">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagePhoto"
+            android:layout_width="@dimen/dimens_84dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            android:layout_marginRight="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_bold"
+            android:includeFontPadding="false"
+            android:textColor="#1d1d1d"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@+id/imagePhoto"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="asdasdasdasdasdasdasdasd" />
+
+        <TextView
+            android:id="@+id/textYears"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_marginRight="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_regular"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/imagePhoto"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textTitle"
+            tools:text="2017" />
+
+        <TextView
+            android:id="@+id/textGenre1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_16dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_marginTop="@dimen/dimens_4dp"
+            android:alpha="0.7"
+            android:background="@drawable/view_rounded"
+            android:elevation="@dimen/dimens_2dp"
+            android:fontFamily="@font/lato_bold"
+            android:paddingLeft="@dimen/dimens_12dp"
+            android:paddingTop="@dimen/dimens_2dp"
+            android:paddingRight="@dimen/dimens_12dp"
+            android:paddingBottom="@dimen/dimens_2dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/imagePhoto"
+            app:layout_constraintRight_toLeftOf="@+id/textGenre2"
+            app:layout_constraintTop_toBottomOf="@+id/textYears"
+            app:layout_constraintWidth_default="wrap"
+            tools:text="Comedy" />
+
+        <TextView
+            android:id="@+id/textGenre2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_8dp"
+            android:layout_marginLeft="@dimen/dimens_8dp"
+            android:layout_marginTop="@dimen/dimens_4dp"
+            android:layout_marginEnd="@dimen/dimens_16dp"
+            android:layout_marginRight="@dimen/dimens_16dp"
+            android:alpha="0.7"
+            android:background="@drawable/view_rounded"
+            android:elevation="@dimen/dimens_2dp"
+            android:fontFamily="@font/lato_bold"
+            android:paddingLeft="@dimen/dimens_12dp"
+            android:paddingTop="@dimen/dimens_2dp"
+            android:paddingRight="@dimen/dimens_12dp"
+            android:paddingBottom="@dimen/dimens_2dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toRightOf="@+id/textGenre1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textYears"
+            app:layout_constraintWidth_default="wrap"
+            tools:text="Comedy" />
+
+        <TextView
+            android:id="@+id/textRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_16dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_marginBottom="@dimen/dimens_8dp"
+            android:fontFamily="@font/lato_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/imagePhoto"
+            app:layout_constraintTop_toBottomOf="@+id/textGenre1"
+            tools:text="7.8" />
+
+        <com.willy.ratingbar.ScaleRatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_8dp"
+            android:layout_marginLeft="@dimen/dimens_8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textRating"
+            app:layout_constraintLeft_toRightOf="@+id/textRating"
+            app:layout_constraintTop_toTopOf="@+id/textRating"
+            app:srb_clickable="false"
+            app:srb_isIndicator="false"
+            app:srb_scrollable="false"
+            app:srb_clearRatingEnabled="false"
+            app:srb_drawableEmpty="@drawable/ic_star_empty"
+            app:srb_drawableFilled="@drawable/ic_star_filled"
+            app:srb_minimumStars="1"
+            app:srb_numStars="5"
+            app:srb_starHeight="@dimen/dimens_24dp"
+            app:srb_starPadding="0dp"
+            app:srb_starWidth="@dimen/dimens_24dp"
+            app:srb_stepSize="0.1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

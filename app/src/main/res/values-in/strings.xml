@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iCinema</string>
+    <string name="bnav_movie">Film</string>
+    <string name="bnav_tvshows">Acara TV</string>
+    <string name="bnav_favorite">Favorit</string>
+    <string name="myprogressview_loading_message">Memuat</string>
+    <string name="myprogressview_tryagain">Coba Lagi</string>
+    <string name="popular">Populer</string>
+    <string name="release_date">Tanggal Rilis</string>
+    <string name="revenue">Pendapatan</string>
+    <string name="tagline">Tagline</string>
+    <string name="overview">Ikhtisar</string>
+    <string name="vote_count">Jumlah Vote</string>
+    <string name="popularity">%1$s popularitas</string>
+    <string name="movie_favorite_added_msg">Film telah ditambah ke Favorit</string>
+    <string name="movie_favorite_removed_msg">Film telah dihapus dari Favorit</string>
+    <string name="tvshow_favorite_added_msg">Acara TV telah ditambah ke Favorit</string>
+    <string name="tvshow_favorite_removed_msg">Acara TV telah dihapus dari Favorit</string>
+    <string name="no_favorite">Belum ada favorit!</string>
+    <string name="double_back_to_exit">Ketuk kembali untuk keluar aplikasi</string>
+    <string name="movies">Film</string>
+    <string name="tv_shows">Acara TV</string>
+    <string name="first_air_date">Tanggal Mengudara</string>
+    <string name="number_of_seasons">Jumlah Season</string>
+    <string name="status">Status</string>
+</resources>
