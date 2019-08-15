@@ -1,6 +1,7 @@
 package me.hafizdwp.made_submission_final.data.source.remote.api
 
 import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import me.hafizdwp.made_submission_final.BuildConfig
 import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.Constant
@@ -43,4 +44,11 @@ interface TvShowApi {
             @Query("api_key") apiKey: String = BuildConfig.BASE_API_KEY,
             @Query("language") language: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: "en-US"
     ): Observable<TvShowDetailResponse>
+
+    @GET("search/tv")
+    fun getTvShowBySearch(
+            @Query("api_key") apiKey: String = BuildConfig.BASE_API_KEY,
+            @Query("language") language: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: "en-US",
+            @Query("query") query: String
+    ): Deferred<BaseApiModel<List<TvShowResponse>>>
 }

@@ -7,16 +7,16 @@ package me.hafizdwp.made_submission_final.base
 data class BaseApiModel<T>(
 
         // success response
-        var page: Int?,
-        var total_results: Int?,
-        var total_pages: Int?,
-        var results: T?,
+        var page: Int? = null,
+        var total_results: Int? = null,
+        var total_pages: Int? = null,
+        var results: T? = null,
 
         // exclusive because too lazy too create another model
-        var genres: T?,
+        var genres: T? = null,
 
         // error response
-        var status_code: Int?,
-        var status_message: String?,
-        var success: Boolean?
+        var status_code: Int? = null,
+        var status_message: String? = null,
+        var success: Boolean? = null
 )

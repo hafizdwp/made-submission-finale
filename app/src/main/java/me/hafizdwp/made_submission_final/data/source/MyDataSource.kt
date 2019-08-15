@@ -1,12 +1,11 @@
 package me.hafizdwp.made_submission_final.data.source
 
-import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
-import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import kotlinx.coroutines.Deferred
+import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.model.*
+import me.hafizdwp.made_submission_final.util.ext.async
 
 /**
  * @author hafizdwp
@@ -27,6 +26,13 @@ interface MyDataSource {
     fun getOnAirTvShows(callback: MyResponseCallback<List<TvShowResponse>>) {}
     fun getTvShowsGenre(callback: MyResponseCallback<List<GenreResponse>>) {}
     fun getTvShowDetails(tvShowId: Int, callback: MyResponseCallback<TvShowDetailResponse>) {}
+
+    suspend fun getMoviesBySearch(query: String): Deferred<BaseApiModel<List<MovieResponse>>> {
+        return async { BaseApiModel<List<MovieResponse>>() }
+    }
+    suspend fun getTvShowBySearch(query: String): Deferred<BaseApiModel<List<TvShowResponse>>> {
+        return async { BaseApiModel<List<TvShowResponse>>() }
+    }
 
 
     ///

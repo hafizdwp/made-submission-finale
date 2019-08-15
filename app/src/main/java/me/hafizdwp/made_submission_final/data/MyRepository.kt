@@ -1,23 +1,31 @@
 package me.hafizdwp.made_submission_final.data
 
-import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
-import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import kotlinx.coroutines.Deferred
+import me.hafizdwp.made_submission_final.base.BaseApiModel
+import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.local.MyLocalDataSource
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
-import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.remote.MyRemoteDataSource
 import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
+import me.hafizdwp.made_submission_final.data.source.remote.model.*
+import me.hafizdwp.made_submission_final.util.ext.asyncAwait
 
 /**
  * @author hafizdwp
  * 10/07/19
  **/
-open class MyRepository(val remoteDataSource: MyRemoteDataSource,
-                        val localDataSource: MyLocalDataSource) :
-    MyDataSource {
+open class MyRepository(
+    val remoteDataSource: MyRemoteDataSource,
+    val localDataSource: MyLocalDataSource
+) : MyDataSource {
+
+    override suspend fun getTvShowBySearch(query: String): Deferred<BaseApiModel<List<TvShowResponse>>> {
+        return asyncAwait { remoteDataSource.getTvShowBySearch(query = query) }
+    }
+
+    override suspend fun getMoviesBySearch(query: String): Deferred<BaseApiModel<List<MovieResponse>>> {
+        return asyncAwait { remoteDataSource.getMoviesBySearch(query = query) }
+    }
 
     override fun getPopularMovies(callback: MyResponseCallback<List<MovieResponse>>) {
         remoteDataSource.getPopularMovies(callback)
@@ -82,13 +90,15 @@ open class MyRepository(val remoteDataSource: MyRemoteDataSource,
          * Returns the single instance of this class, creating it if necessary.
          */
         @JvmStatic
-        fun getInstance(remoteDataSource: MyRemoteDataSource,
-                        localDataSource: MyLocalDataSource) =
-                INSTANCE
-                        ?: synchronized(MyRepository::class.java) {
-                            INSTANCE
-                                    ?: MyRepository(remoteDataSource, localDataSource)
-                                            .also { INSTANCE = it }
-                        }
+        fun getInstance(
+            remoteDataSource: MyRemoteDataSource,
+            localDataSource: MyLocalDataSource
+        ) =
+            INSTANCE
+                ?: synchronized(MyRepository::class.java) {
+                    INSTANCE
+                        ?: MyRepository(remoteDataSource, localDataSource)
+                            .also { INSTANCE = it }
+                }
     }
 }

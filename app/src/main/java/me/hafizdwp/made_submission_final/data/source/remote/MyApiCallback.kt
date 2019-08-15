@@ -38,7 +38,7 @@ abstract class MyApiCallback<T> : Observer<T> {
                 var errorDao: BaseApiModel<T>? = null
 
                 try {
-                    val body = e.response().errorBody()
+                    val body = e.response()?.errorBody()
                     errorDao = body?.string()?.fromJson()
 
                 } catch (exception: Exception) {
@@ -50,6 +50,7 @@ abstract class MyApiCallback<T> : Observer<T> {
 
                 when (code) {
                     500 -> msg = errorDao?.status_message ?: "Internal Server Error"
+                    503 -> msg = errorDao?.status_message ?: "Server Error"
                     504 -> msg = errorDao?.status_message ?: "Error Response"
                     502, 404 ->
                         msg = errorDao?.status_message ?: "Error Connect or Not Found"

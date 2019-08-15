@@ -1,6 +1,9 @@
 package me.hafizdwp.made_submission_final.data.source.remote
 
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import me.hafizdwp.made_submission_final.base.BaseApiModel
+import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.remote.api.MovieApi
 import me.hafizdwp.made_submission_final.data.source.remote.api.TvShowApi
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
@@ -8,8 +11,7 @@ import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailRes
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
-import me.hafizdwp.made_submission_final.data.source.MyDataSource
-import me.hafizdwp.made_submission_final.util.ext.onCallback
+import me.hafizdwp.made_submission_final.util.ext.*
 
 /**
  * @author hafizdwp
@@ -17,8 +19,16 @@ import me.hafizdwp.made_submission_final.util.ext.onCallback
  **/
 object MyRemoteDataSource : MyDataSource {
 
-    val movieApi by lazy { ApiServiceFactory.builder<MovieApi>() }
-    val tvShowApi by lazy { ApiServiceFactory.builder<TvShowApi>() }
+    private val movieApi by lazy { ApiServiceFactory.builder<MovieApi>() }
+    private val tvShowApi by lazy { ApiServiceFactory.builder<TvShowApi>() }
+
+    override suspend fun getTvShowBySearch(query: String): Deferred<BaseApiModel<List<TvShowResponse>>> {
+        return asyncAwait { tvShowApi.getTvShowBySearch(query = query) }
+    }
+
+    override suspend fun getMoviesBySearch(query: String): Deferred<BaseApiModel<List<MovieResponse>>> {
+        return asyncAwait { movieApi.getMovieBySearch(query = query) }
+    }
 
     override fun getPopularMovies(callback: MyResponseCallback<List<MovieResponse>>) {
 
@@ -52,7 +62,7 @@ object MyRemoteDataSource : MyDataSource {
     override fun getTvShowDetails(tvShowId: Int, callback: MyResponseCallback<TvShowDetailResponse>) {
 
         tvShowApi.getTvShowDetail(tvShowId = tvShowId).onCallback(
-                object: MyApiCallback<TvShowDetailResponse>() {
+                object : MyApiCallback<TvShowDetailResponse>() {
                     override fun onSuccess(data: TvShowDetailResponse) {
                         callback.onDataAvailable(data)
                     }
