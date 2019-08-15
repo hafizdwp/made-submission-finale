@@ -1,7 +1,5 @@
 package me.hafizdwp.made_submission_final.mvvm
 
-import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -10,6 +8,8 @@ import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
 import me.hafizdwp.made_submission_final.mvvm.favorite.FavoriteFragment
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieFragment
+import me.hafizdwp.made_submission_final.mvvm.search.SearchFragment
+import me.hafizdwp.made_submission_final.mvvm.setting.SettingFragment
 import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowFragment
 import me.hafizdwp.made_submission_final.util.ext.disableShiftingMode
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
@@ -37,8 +37,12 @@ class MainFragment : BaseFragment<MainActivity, NoViewModel>() {
                 fragment = MovieFragment.newInstance()
             R.id.bnav_tvshow ->
                 fragment = TvShowFragment.newInstance()
+            R.id.bnav_search ->
+                fragment = SearchFragment.newInstance()
             R.id.bnav_favorite ->
                 fragment = FavoriteFragment.newInstance()
+            R.id.bnav_settings ->
+                fragment = SettingFragment.newInstance()
         }
 
         if (fragment != null) {

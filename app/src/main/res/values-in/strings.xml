@@ -4,6 +4,8 @@
     <string name="bnav_movie">Film</string>
     <string name="bnav_tvshows">Acara TV</string>
     <string name="bnav_favorite">Favorit</string>
+    <string name="bnav_search">Cari</string>
+    <string name="bnav_settings">Setting</string>
     <string name="myprogressview_loading_message">Memuat</string>
     <string name="myprogressview_tryagain">Coba Lagi</string>
     <string name="popular">Populer</string>

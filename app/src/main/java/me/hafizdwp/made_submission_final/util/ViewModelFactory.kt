@@ -14,6 +14,8 @@ import me.hafizdwp.made_submission_final.data.source.remote.MyRemoteDataSource
 import me.hafizdwp.made_submission_final.mvvm.detail.DetailViewModel
 import me.hafizdwp.made_submission_final.mvvm.favorite.FavoriteViewModel
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieViewModel
+import me.hafizdwp.made_submission_final.mvvm.search.SearchViewModel
+import me.hafizdwp.made_submission_final.mvvm.setting.SettingViewModel
 import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowViewModel
 import me.hafizdwp.made_submission_final.util.dbhelper.AppExecutors
 
@@ -45,6 +47,10 @@ class ViewModelFactory private constructor(
                         FavoriteViewModel(mApplication, mRepository)
                     isAssignableFrom(DetailViewModel::class.java) ->
                         DetailViewModel(mApplication, mRepository)
+                    isAssignableFrom(SearchViewModel::class.java) ->
+                        SearchViewModel(mApplication, mRepository)
+                    isAssignableFrom(SettingViewModel::class.java) ->
+                        SettingViewModel(mApplication, mRepository)
 
                     else ->
                         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
