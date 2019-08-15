@@ -9,6 +9,10 @@ import kotlinx.coroutines.delay
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
+import me.hafizdwp.made_submission_final.mvvm.search.tabs.MovieSearchResultFragment
+import me.hafizdwp.made_submission_final.mvvm.search.tabs.MovieSearchResultViewModel
+import me.hafizdwp.made_submission_final.mvvm.search.tabs.TvShowSearchResultFragment
+import me.hafizdwp.made_submission_final.mvvm.search.tabs.TvShowSearchResultViewModel
 import me.hafizdwp.made_submission_final.util.ext.gone
 import me.hafizdwp.made_submission_final.util.ext.launch
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
@@ -27,6 +31,9 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
         get() = obtainViewModel()
     override val mLifecycleOwner: LifecycleOwner
         get() = this@SearchFragment
+
+    var mMovieSearchResultVM: MovieSearchResultViewModel? = null
+    var mTvShowSearchResultVM: TvShowSearchResultViewModel? = null
 
     val SEARCH_ON_TYPE_DELAY = 800L
     var searchJob: Job? = null
@@ -61,6 +68,8 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
         }
     }
 
+    var mPagerAdapter: SearchPagerAdapter? = null
+
 
     override fun onViewReady() {
         textSearchLabel.setOnClickListener {
@@ -68,6 +77,24 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
         }
         searchView.setOnQueryTextListener(searchQueryTextListener)
         searchView.addOnLayoutChangeListener(searchViewExpandCollapseListener)
+
+        mPagerAdapter = SearchPagerAdapter(childFragmentManager)
+        viewPager.adapter = mPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+
+        // Populate tabs
+        mPagerAdapter?.addFragment(
+                fragment = MovieSearchResultFragment.newInstance(),
+                title = getString(R.string.movies))
+        mPagerAdapter?.addFragment(
+                fragment = TvShowSearchResultFragment.newInstance(),
+                title = getString(R.string.tv_shows))
+
+        viewPager.adapter?.notifyDataSetChanged()
+
+        // Initiate tabs fragment's viewModel
+        mMovieSearchResultVM = obtainViewModel()
+        mTvShowSearchResultVM = obtainViewModel()
     }
 
     override fun start() {
@@ -78,6 +105,22 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
         return mViewModel.apply {
             toast.observe {
                 toast(it.toString())
+            }
+
+            listMoviesLive.observe {
+                it?.let { list ->
+
+                    // Notify movie search item
+                    mMovieSearchResultVM?.listMoviesLive?.value = list
+                }
+            }
+
+            listTvShowsLive.observe {
+                it?.let { list ->
+
+                    // Notify tvshow search item
+                    mTvShowSearchResultVM?.listTvShowsLive?.value = list
+                }
             }
         }
     }

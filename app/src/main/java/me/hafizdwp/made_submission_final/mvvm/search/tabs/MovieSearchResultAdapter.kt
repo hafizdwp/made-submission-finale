@@ -1,49 +1,51 @@
-package me.hafizdwp.made_submission_final.mvvm.tvshow
+package me.hafizdwp.made_submission_final.mvvm.search.tabs
 
 import android.view.View
 import com.bumptech.glide.RequestManager
-import kotlinx.android.synthetic.main.tvshow_item.view.*
+import kotlinx.android.synthetic.main.movie_item.view.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
 import me.hafizdwp.made_submission_final.data.Constant
-import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.mvvm.movie.MovieActionListener
 import me.hafizdwp.made_submission_final.util.ext.visible
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
 
 /**
  * @author hafizdwp
- * 01/08/2019
+ * 15/08/2019
  **/
-class TvShowAdapter(
-        private val listItems: ArrayList<TvShowResponse>,
-        private val glide: RequestManager,
-        private val actionListener: TvShowActionListener
-) : BaseRecyclerAdapter<TvShowResponse>() {
+class MovieSearchResultAdapter(val listItem: List<MovieResponse>,
+                               val glide: RequestManager,
+                               val actionListener: MovieActionListener) : BaseRecyclerAdapter<MovieResponse>() {
 
     override val bindItemLayoutRes: Int
-        get() = R.layout.tvshow_item
-    override val mListItem: List<TvShowResponse>
-        get() = listItems
+        get() = R.layout.movie_item
+    override val mListItem: List<MovieResponse>
+        get() = listItem
 
-    override fun onBind(itemView: View, model: TvShowResponse) {
+    override fun onGetItemCount(): Int {
+        return if (mListItem.size > 9)
+            9
+        else
+            mListItem.size
+    }
+
+    override fun onBind(itemView: View, model: MovieResponse) {
         itemView.apply {
+
             rootView.setOnClickListener {
-                actionListener.onTvShowClick(model.id!!, model)
+                actionListener.onMovieClick(model.id!!, model)
             }
 
             model.apply {
-                textTitle.text = name
-                textYears.text = try {
-                    first_air_date?.substring(0, 4)
-                } catch (e: Exception) {
-                    "-"
-                }
-                textRating.text = vote_average.toString()
+                textTitle.text = title
+                textYears.text = release_date?.substring(0, 4)
                 textRating.text = vote_average.toString()
 
                 glide.load(Constant.BASE_IMAGE_PATH + poster_path)
-                        .withLoadingPlaceholder(itemView.context)
-                        .into(imagePhoto)
+                    .withLoadingPlaceholder(itemView.context)
+                    .into(imagePhoto)
 
                 if (vote_average == null) {
                     ratingBar.rating = 0F

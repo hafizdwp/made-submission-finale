@@ -9,8 +9,6 @@ import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.await
 import me.hafizdwp.made_submission_final.util.ext.launch
-import me.hafizdwp.made_submission_final.util.ext.log
-import me.hafizdwp.made_submission_final.util.ext.toJson
 
 /**
  * @author hafizdwp
@@ -20,13 +18,14 @@ class SearchViewModel(application: Application,
                       private val mRepository: MyRepository) : BaseViewModel(application) {
 
     val toast = MutableLiveData<String>()
+    val listMoviesLive = MutableLiveData<List<MovieResponse>>()
+    val listTvShowsLive = MutableLiveData<List<TvShowResponse>>()
 
     fun getMovieBySearch(query: String) = doIfQueryValid(query) {
         launch {
             try {
                 val response = await { mRepository.getMoviesBySearch(query) }
-                log(response.toJson())
-                toast.value = response.toJson()
+                listMoviesLive.value = response.results
 
             } catch (e: Throwable) {
                 toast.value = e.getErrorMessage<BaseApiModel<List<MovieResponse>>>()
@@ -38,8 +37,7 @@ class SearchViewModel(application: Application,
         launch {
             try {
                 val response = await { mRepository.getTvShowBySearch(query) }
-                log(response.toJson())
-                toast.value = response.toJson()
+                listTvShowsLive.value = response.results
 
             } catch (e: Throwable) {
                 toast.value = e.getErrorMessage<BaseApiModel<List<TvShowResponse>>>()

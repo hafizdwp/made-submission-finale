@@ -1,4 +1,4 @@
-package me.hafizdwp.made_submission_final.mvvm.tvshow
+package me.hafizdwp.made_submission_final.mvvm.search.tabs
 
 import android.view.View
 import com.bumptech.glide.RequestManager
@@ -7,14 +7,15 @@ import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
 import me.hafizdwp.made_submission_final.data.Constant
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowActionListener
 import me.hafizdwp.made_submission_final.util.ext.visible
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
 
 /**
  * @author hafizdwp
- * 01/08/2019
+ * 15/08/2019
  **/
-class TvShowAdapter(
+class TvShowSearchResultAdapter(
         private val listItems: ArrayList<TvShowResponse>,
         private val glide: RequestManager,
         private val actionListener: TvShowActionListener
@@ -33,12 +34,12 @@ class TvShowAdapter(
 
             model.apply {
                 textTitle.text = name
+                textRating.text = vote_average.toString()
                 textYears.text = try {
                     first_air_date?.substring(0, 4)
                 } catch (e: Exception) {
                     "-"
                 }
-                textRating.text = vote_average.toString()
                 textRating.text = vote_average.toString()
 
                 glide.load(Constant.BASE_IMAGE_PATH + poster_path)

@@ -15,6 +15,8 @@ import me.hafizdwp.made_submission_final.mvvm.detail.DetailViewModel
 import me.hafizdwp.made_submission_final.mvvm.favorite.FavoriteViewModel
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieViewModel
 import me.hafizdwp.made_submission_final.mvvm.search.SearchViewModel
+import me.hafizdwp.made_submission_final.mvvm.search.tabs.MovieSearchResultViewModel
+import me.hafizdwp.made_submission_final.mvvm.search.tabs.TvShowSearchResultViewModel
 import me.hafizdwp.made_submission_final.mvvm.setting.SettingViewModel
 import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowViewModel
 import me.hafizdwp.made_submission_final.util.dbhelper.AppExecutors
@@ -51,6 +53,10 @@ class ViewModelFactory private constructor(
                         SearchViewModel(mApplication, mRepository)
                     isAssignableFrom(SettingViewModel::class.java) ->
                         SettingViewModel(mApplication, mRepository)
+                    isAssignableFrom(MovieSearchResultViewModel::class.java) ->
+                        MovieSearchResultViewModel(mApplication, mRepository)
+                    isAssignableFrom(TvShowSearchResultViewModel::class.java) ->
+                        TvShowSearchResultViewModel(mApplication, mRepository)
 
                     else ->
                         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
