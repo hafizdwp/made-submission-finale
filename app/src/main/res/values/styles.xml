@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MySearchView" parent="AppTheme">
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/notSoWhite</item>
+    </style>
+
 </resources>

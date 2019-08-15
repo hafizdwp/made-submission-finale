@@ -5,6 +5,7 @@
     <color name="colorAccent">#192C4F</color>
 
     <color name="white">#F8F8F8</color>
+    <color name="notSoWhite">#efefef</color>
     <color name="background">#303030</color>
     <color name="cardBackground">#424242</color>
     <color name="secondary">#bb86fc</color>

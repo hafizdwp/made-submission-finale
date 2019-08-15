@@ -1,7 +1,7 @@
 package me.hafizdwp.made_submission_final.mvvm.search
 
-import android.text.Editable
-import android.text.TextWatcher
+import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.android.synthetic.main.search_fragment.*
 import kotlinx.coroutines.Job
@@ -9,11 +9,12 @@ import kotlinx.coroutines.delay
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
+import me.hafizdwp.made_submission_final.util.ext.gone
 import me.hafizdwp.made_submission_final.util.ext.launch
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
 import me.hafizdwp.made_submission_final.util.ext.toast
+import me.hafizdwp.made_submission_final.util.ext.visible
 import me.hafizdwp.made_submission_final.util.ext.withArgs
-import kotlin.system.measureTimeMillis
 
 /**
  * @author hafizdwp
@@ -27,28 +28,50 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
     override val mLifecycleOwner: LifecycleOwner
         get() = this@SearchFragment
 
+    val SEARCH_ON_TYPE_DELAY = 800L
     var searchJob: Job? = null
+    val searchQueryTextListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            return false
+        }
 
-    override fun onViewReady() {
-        etSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(newText: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        override fun onQueryTextChange(newText: String?): Boolean {
+            newText?.let {
                 searchJob?.cancel()
                 searchJob = launch {
-                    delay(2000L)
-                    mViewModel.getMovieBySearch(newText.toString())
-                    mViewModel.getTvShowBySearch(newText.toString())
+
+                    // Delay and execute
+                    delay(SEARCH_ON_TYPE_DELAY)
+                    mViewModel.getMovieBySearch(newText)
+                    mViewModel.getTvShowBySearch(newText)
                 }
             }
-        })
+            return true
+        }
+    }
+    val searchViewExpandCollapseListener = View.OnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+        try {
+            val sView = v as SearchView
+            if (!sView.isIconified) {
+                textSearchLabel.gone()
+            } else {
+                textSearchLabel.visible()
+            }
+        } catch (e: Exception) {
+        }
+    }
+
+
+    override fun onViewReady() {
+        textSearchLabel.setOnClickListener {
+            searchView?.isIconified = false
+        }
+        searchView.setOnQueryTextListener(searchQueryTextListener)
+        searchView.addOnLayoutChangeListener(searchViewExpandCollapseListener)
     }
 
     override fun start() {
+
     }
 
     override fun setupObserver(): SearchViewModel? {

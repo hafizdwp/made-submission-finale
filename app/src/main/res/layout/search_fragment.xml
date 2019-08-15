@@ -12,33 +12,52 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_new"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@color/colorPrimary"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:contentInsetEnd="@dimen/dimens_16dp"
+            app:contentInsetLeft="@dimen/dimens_16dp"
+            app:contentInsetRight="@dimen/dimens_16dp"
+            app:contentInsetStart="@dimen/dimens_16dp">
 
-            <androidx.appcompat.widget.SearchView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white">
+                android:layout_height="wrap_content">
 
-            </androidx.appcompat.widget.SearchView>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:theme="@style/MySearchView"
+                    app:closeIcon="@drawable/ic_cancel"
+                    app:defaultQueryHint="Cari film"
+                    app:divider="@color/white"
+                    app:dividerPadding="@dimen/dimens_14dp"
+                    app:queryHint="Search movies/tv..."
+                    app:searchHintIcon="@null"
+                    app:searchIcon="@drawable/ic_search_white"
+                    app:showDividers="beginning" />
+
+                <TextView
+                    android:id="@+id/textSearchLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimens_48dp"
+                    android:fontFamily="@font/lato_semibold"
+                    android:text="Search"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/searchView"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/searchView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/etSearch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topToolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
