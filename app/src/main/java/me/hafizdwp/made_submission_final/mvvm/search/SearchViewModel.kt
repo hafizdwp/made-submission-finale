@@ -8,6 +8,7 @@ import me.hafizdwp.made_submission_final.data.MyRepository
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.await
+import me.hafizdwp.made_submission_final.util.ext.call
 import me.hafizdwp.made_submission_final.util.ext.launch
 
 /**
@@ -21,26 +22,77 @@ class SearchViewModel(application: Application,
     val listMoviesLive = MutableLiveData<List<MovieResponse>>()
     val listTvShowsLive = MutableLiveData<List<TvShowResponse>>()
 
-    fun getMovieBySearch(query: String) = doIfQueryValid(query) {
+    val mvStartProgress = MutableLiveData<Void>()
+    val mvRequestSuccess = MutableLiveData<Void>()
+    val mvRequestEmpty = MutableLiveData<String>()
+    val mvRequestFailed = MutableLiveData<String>()
+
+    val tvStartProgress = MutableLiveData<Void>()
+    val tvRequestSuccess = MutableLiveData<Void>()
+    val tvRequestEmpty = MutableLiveData<String>()
+    val tvRequestFailed = MutableLiveData<String>()
+
+    var tempMovieQuery = ""
+    var tempTvShowQuery = ""
+
+    fun getMovieBySearch(query: String = "",
+                         isCalledFromChild: Boolean = false) = doIfQueryValid(query) {
+
+        tempMovieQuery = query
+
         launch {
             try {
-                val response = await { mRepository.getMoviesBySearch(query) }
-                listMoviesLive.value = response.results
+
+                mvStartProgress.call()
+
+                val response = await {
+                    mRepository.getMoviesBySearch(
+                            query = if (!isCalledFromChild) query
+                            else tempMovieQuery
+                    )
+                }
+                val listMovies = response.results
+                if (listMovies.isNullOrEmpty())
+                    mvRequestEmpty.value = "Belum ada konten"
+                else {
+                    mvRequestSuccess.call()
+                    listMoviesLive.value = response.results
+                }
+
 
             } catch (e: Throwable) {
-                toast.value = e.getErrorMessage<BaseApiModel<List<MovieResponse>>>()
+                mvRequestFailed.value = e.getErrorMessage<BaseApiModel<List<MovieResponse>>>()
             }
         }
     }
 
-    fun getTvShowBySearch(query: String) = doIfQueryValid(query) {
+    fun getTvShowBySearch(query: String = "",
+                          isCalledFromChild: Boolean = false) = doIfQueryValid(query) {
+
+        tempTvShowQuery = query
+
         launch {
             try {
-                val response = await { mRepository.getTvShowBySearch(query) }
-                listTvShowsLive.value = response.results
+
+                tvStartProgress.call()
+
+                val response = await {
+                    mRepository.getTvShowBySearch(
+                            query = if (!isCalledFromChild) query
+                            else tempTvShowQuery
+                    )
+                }
+                val listTvShows = response.results
+                if (listTvShows.isNullOrEmpty())
+                    tvRequestEmpty.value = "Belum ada konten"
+                else {
+                    tvRequestSuccess.call()
+                    listTvShowsLive.value = response.results
+                }
+
 
             } catch (e: Throwable) {
-                toast.value = e.getErrorMessage<BaseApiModel<List<TvShowResponse>>>()
+                tvRequestFailed.value = e.getErrorMessage<BaseApiModel<List<TvShowResponse>>>()
             }
         }
     }

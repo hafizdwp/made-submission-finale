@@ -14,4 +14,8 @@ class TvShowSearchResultViewModel(application: Application,
                                   private val mRepository: MyRepository) : BaseViewModel(application) {
 
     val listTvShowsLive = MutableLiveData<List<TvShowResponse>>()
+    val startProgress = MutableLiveData<Void>()
+    val requestSuccess = MutableLiveData<Void>()
+    val requestEmpty = MutableLiveData<String>()
+    val requestFailed = MutableLiveData<String>()
 }

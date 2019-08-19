@@ -14,4 +14,8 @@ class MovieSearchResultViewModel(application: Application,
                                  private val mRepository: MyRepository) : BaseViewModel(application) {
 
     val listMoviesLive = MutableLiveData<List<MovieResponse>>()
+    val startProgress = MutableLiveData<Void>()
+    val requestSuccess = MutableLiveData<Void>()
+    val requestEmpty = MutableLiveData<String>()
+    val requestFailed = MutableLiveData<String>()
 }

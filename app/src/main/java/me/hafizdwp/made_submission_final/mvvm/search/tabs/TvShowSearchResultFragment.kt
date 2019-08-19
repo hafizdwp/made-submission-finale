@@ -5,14 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.tvshow_search_result_fragment.*
-import me.hafizdwp.made_submission_final.NoViewModel
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
 import me.hafizdwp.made_submission_final.mvvm.detail.DetailActivity
+import me.hafizdwp.made_submission_final.mvvm.search.SearchViewModel
 import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowActionListener
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
+import me.hafizdwp.made_submission_final.util.ext.toast
 import me.hafizdwp.made_submission_final.util.ext.withArgs
 
 /**
@@ -58,6 +59,31 @@ class TvShowSearchResultFragment : BaseFragment<MainActivity, TvShowSearchResult
                     mAdapter?.notifyDataSetChanged()
                 }
             }
+
+            startProgress.observe {
+                tvrProgressView.startProgress()
+            }
+
+            requestSuccess.observe {
+                tvrProgressView.stopAndGone()
+            }
+
+            requestEmpty.observe { emptyMsg ->
+                emptyMsg?.let {
+                    tvrProgressView.stopAndError(emptyMsg, false)
+                }
+            }
+
+            requestFailed.observe { errorMsg ->
+                errorMsg?.let {
+                    tvrProgressView.stopAndError(errorMsg, true)
+                    tvrProgressView.setRetryClickListener {
+                        toast("tvshow")
+                        val parentViewModel = obtainViewModel<SearchViewModel>()
+                        parentViewModel.getTvShowBySearch(isCalledFromChild = true)
+                    }
+                }
+            }
         }
     }
 
@@ -73,6 +99,6 @@ class TvShowSearchResultFragment : BaseFragment<MainActivity, TvShowSearchResult
     }
 
     companion object {
-        fun newInstance() = TvShowSearchResultFragment().withArgs{ }
+        fun newInstance() = TvShowSearchResultFragment().withArgs { }
     }
 }

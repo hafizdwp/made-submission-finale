@@ -13,6 +13,7 @@ import me.hafizdwp.made_submission_final.mvvm.search.tabs.MovieSearchResultFragm
 import me.hafizdwp.made_submission_final.mvvm.search.tabs.MovieSearchResultViewModel
 import me.hafizdwp.made_submission_final.mvvm.search.tabs.TvShowSearchResultFragment
 import me.hafizdwp.made_submission_final.mvvm.search.tabs.TvShowSearchResultViewModel
+import me.hafizdwp.made_submission_final.util.ext.call
 import me.hafizdwp.made_submission_final.util.ext.gone
 import me.hafizdwp.made_submission_final.util.ext.launch
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
@@ -67,7 +68,6 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
         } catch (e: Exception) {
         }
     }
-
     var mPagerAdapter: SearchPagerAdapter? = null
 
 
@@ -107,6 +107,10 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
                 toast(it.toString())
             }
 
+            ///
+            /// Movies observer
+            ///
+
             listMoviesLive.observe {
                 it?.let { list ->
 
@@ -115,11 +119,56 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
                 }
             }
 
+            mvStartProgress.observe {
+                mMovieSearchResultVM?.startProgress?.call()
+            }
+
+            mvRequestSuccess.observe {
+                mMovieSearchResultVM?.requestSuccess?.call()
+            }
+
+            mvRequestEmpty.observe {  emptyMsg ->
+                emptyMsg?.let {
+                    mMovieSearchResultVM?.requestEmpty?.value = it
+                }
+            }
+
+            mvRequestFailed.observeForever { errorMsg ->
+                errorMsg?.let {
+                    mMovieSearchResultVM?.requestFailed?.value = it
+                }
+            }
+
+
+            ///
+            /// TvShows observer
+            ///
+
             listTvShowsLive.observe {
                 it?.let { list ->
 
                     // Notify tvshow search item
                     mTvShowSearchResultVM?.listTvShowsLive?.value = list
+                }
+            }
+
+            tvStartProgress.observe {
+                mTvShowSearchResultVM?.startProgress?.call()
+            }
+
+            tvRequestSuccess.observe {
+                mTvShowSearchResultVM?.requestSuccess?.call()
+            }
+
+            tvRequestEmpty.observe {  emptyMsg ->
+                emptyMsg?.let {
+                    mTvShowSearchResultVM?.requestEmpty?.value = it
+                }
+            }
+
+            tvRequestFailed.observeForever { errorMsg ->
+                errorMsg?.let {
+                    mTvShowSearchResultVM?.requestFailed?.value = it
                 }
             }
         }

@@ -11,7 +11,9 @@ import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
 import me.hafizdwp.made_submission_final.mvvm.detail.DetailActivity
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieActionListener
+import me.hafizdwp.made_submission_final.mvvm.search.SearchViewModel
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
+import me.hafizdwp.made_submission_final.util.ext.toast
 import me.hafizdwp.made_submission_final.util.ext.withArgs
 
 /**
@@ -46,6 +48,7 @@ class MovieSearchResultFragment : BaseFragment<MainActivity, MovieSearchResultVi
     }
 
     override fun start() {
+
     }
 
     override fun setupObserver(): MovieSearchResultViewModel? {
@@ -55,6 +58,31 @@ class MovieSearchResultFragment : BaseFragment<MainActivity, MovieSearchResultVi
                     mListMovies.clear()
                     mListMovies.addAll(list)
                     mAdapter?.notifyDataSetChanged()
+                }
+            }
+
+            startProgress.observe {
+                msrProgressView.startProgress()
+            }
+
+            requestSuccess.observe {
+                msrProgressView.stopAndGone()
+            }
+
+            requestEmpty.observe { emptyMsg ->
+                emptyMsg?.let {
+                    msrProgressView.stopAndError(emptyMsg, false)
+                }
+            }
+
+            requestFailed.observe { errorMsg ->
+                errorMsg?.let {
+                    msrProgressView.stopAndError(errorMsg, true)
+                    msrProgressView.setRetryClickListener {
+                        toast("movie")
+                        val parentViewModel = obtainViewModel<SearchViewModel>()
+                        parentViewModel.getMovieBySearch(isCalledFromChild = true)
+                    }
                 }
             }
         }
