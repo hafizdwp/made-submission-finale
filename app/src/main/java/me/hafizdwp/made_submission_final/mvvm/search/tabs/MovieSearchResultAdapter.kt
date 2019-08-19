@@ -8,6 +8,8 @@ import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
 import me.hafizdwp.made_submission_final.data.Constant
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieActionListener
+import me.hafizdwp.made_submission_final.util.ext.log
+import me.hafizdwp.made_submission_final.util.ext.toJson
 import me.hafizdwp.made_submission_final.util.ext.visible
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
 
@@ -32,6 +34,7 @@ class MovieSearchResultAdapter(val listItem: List<MovieResponse>,
     }
 
     override fun onBind(itemView: View, model: MovieResponse) {
+        log(model.toJson())
         itemView.apply {
 
             rootView.setOnClickListener {

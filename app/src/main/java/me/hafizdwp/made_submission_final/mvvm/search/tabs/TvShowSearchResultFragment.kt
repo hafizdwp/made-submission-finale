@@ -78,9 +78,10 @@ class TvShowSearchResultFragment : BaseFragment<MainActivity, TvShowSearchResult
                 errorMsg?.let {
                     tvrProgressView.stopAndError(errorMsg, true)
                     tvrProgressView.setRetryClickListener {
-                        toast("tvshow")
                         val parentViewModel = obtainViewModel<SearchViewModel>()
-                        parentViewModel.getTvShowBySearch(isCalledFromChild = true)
+                        parentViewModel.getTvShowBySearch(
+                                query = parentViewModel.tempTvShowQuery,
+                                isCalledFromChild = true)
                     }
                 }
             }

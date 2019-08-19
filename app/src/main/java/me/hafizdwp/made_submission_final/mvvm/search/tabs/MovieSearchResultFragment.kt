@@ -13,7 +13,6 @@ import me.hafizdwp.made_submission_final.mvvm.detail.DetailActivity
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieActionListener
 import me.hafizdwp.made_submission_final.mvvm.search.SearchViewModel
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
-import me.hafizdwp.made_submission_final.util.ext.toast
 import me.hafizdwp.made_submission_final.util.ext.withArgs
 
 /**
@@ -79,9 +78,10 @@ class MovieSearchResultFragment : BaseFragment<MainActivity, MovieSearchResultVi
                 errorMsg?.let {
                     msrProgressView.stopAndError(errorMsg, true)
                     msrProgressView.setRetryClickListener {
-                        toast("movie")
                         val parentViewModel = obtainViewModel<SearchViewModel>()
-                        parentViewModel.getMovieBySearch(isCalledFromChild = true)
+                        parentViewModel.getMovieBySearch(
+                                query = parentViewModel.tempMovieQuery,
+                                isCalledFromChild = true)
                     }
                 }
             }

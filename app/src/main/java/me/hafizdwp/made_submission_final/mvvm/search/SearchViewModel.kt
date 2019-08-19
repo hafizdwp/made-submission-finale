@@ -38,7 +38,8 @@ class SearchViewModel(application: Application,
     fun getMovieBySearch(query: String = "",
                          isCalledFromChild: Boolean = false) = doIfQueryValid(query) {
 
-        tempMovieQuery = query
+        if (!isCalledFromChild)
+            tempMovieQuery = query
 
         launch {
             try {
@@ -69,7 +70,8 @@ class SearchViewModel(application: Application,
     fun getTvShowBySearch(query: String = "",
                           isCalledFromChild: Boolean = false) = doIfQueryValid(query) {
 
-        tempTvShowQuery = query
+        if (!isCalledFromChild)
+            tempTvShowQuery = query
 
         launch {
             try {
@@ -97,10 +99,12 @@ class SearchViewModel(application: Application,
         }
     }
 
-    private fun doIfQueryValid(
-            query: String,
-            todo: () -> Unit
-    ) {
+    private fun addMoviesGenreAsync() {
+
+    }
+
+    private fun doIfQueryValid(query: String,
+                               todo: () -> Unit) {
         if (query.isNotBlank() && query.length > 2)
             todo.invoke()
     }

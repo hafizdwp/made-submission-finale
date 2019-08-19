@@ -50,8 +50,11 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
 
                     // Delay and execute
                     delay(SEARCH_ON_TYPE_DELAY)
-                    mViewModel.getMovieBySearch(newText)
-                    mViewModel.getTvShowBySearch(newText)
+                    try {
+                        mViewModel.getMovieBySearch(newText)
+                        mViewModel.getTvShowBySearch(newText)
+                    } catch (e: java.lang.Exception) {
+                    }
                 }
             }
             return true
@@ -127,7 +130,7 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
                 mMovieSearchResultVM?.requestSuccess?.call()
             }
 
-            mvRequestEmpty.observe {  emptyMsg ->
+            mvRequestEmpty.observe { emptyMsg ->
                 emptyMsg?.let {
                     mMovieSearchResultVM?.requestEmpty?.value = it
                 }
@@ -138,7 +141,6 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
                     mMovieSearchResultVM?.requestFailed?.value = it
                 }
             }
-
 
             ///
             /// TvShows observer
@@ -160,7 +162,7 @@ class SearchFragment : BaseFragment<MainActivity, SearchViewModel>() {
                 mTvShowSearchResultVM?.requestSuccess?.call()
             }
 
-            tvRequestEmpty.observe {  emptyMsg ->
+            tvRequestEmpty.observe { emptyMsg ->
                 emptyMsg?.let {
                     mTvShowSearchResultVM?.requestEmpty?.value = it
                 }

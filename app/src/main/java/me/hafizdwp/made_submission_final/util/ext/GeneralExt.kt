@@ -90,5 +90,5 @@ val Float.sp: Float
 fun log(msg: String,
         tag: String? = null) {
     if (BuildConfig.DEBUG)
-        Log.d(tag ?: "MyTag", msg)
+        Log.d(tag ?: "mytag", msg)
 }
