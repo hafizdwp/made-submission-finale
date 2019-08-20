@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/notSoWhite"
+    android:orientation="vertical">
+
+    <!--Toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:contentInsetEnd="@dimen/dimens_16dp"
+        app:contentInsetLeft="@dimen/dimens_16dp"
+        app:contentInsetRight="@dimen/dimens_16dp"
+        app:contentInsetStart="@dimen/dimens_16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_semibold"
+            android:text="@string/title_setting"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_18sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--Reminder container-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/conslaReminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dimens_16dp"
+        android:paddingTop="@dimen/dimens_16dp"
+        android:paddingRight="@dimen/dimens_16dp"
+        android:paddingBottom="@dimen/dimens_16dp">
+
+        <TextView
+            android:id="@+id/labelReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:includeFontPadding="false"
+            android:text="@string/reminder"
+            android:textAllCaps="true"
+            android:textSize="@dimen/size_14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!---->
+        <!--Release Reminder-->
+        <!---->
+        <TextView
+            android:id="@+id/textReleaseReminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_marginEnd="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_semibold"
+            android:text="@string/release_reminder"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/swReleaseReminder"
+            app:layout_constraintTop_toBottomOf="@+id/labelReminder" />
+
+        <TextView
+            android:id="@+id/textReleaseReminderDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_2dp"
+            android:layout_marginEnd="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/release_reminder_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/swReleaseReminder"
+            app:layout_constraintTop_toBottomOf="@+id/textReleaseReminder" />
+
+        <Switch
+            android:id="@+id/swReleaseReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textReleaseReminderDesc"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textReleaseReminder" />
+
+        <!---->
+        <!--Daily Reminder-->
+        <!---->
+        <TextView
+            android:id="@+id/textDailyReminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_marginEnd="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_semibold"
+            android:text="@string/daily_reminder"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/swReleaseReminder"
+            app:layout_constraintTop_toBottomOf="@+id/textReleaseReminderDesc" />
+
+        <TextView
+            android:id="@+id/textDailyReminderDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_2dp"
+            android:layout_marginEnd="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/daily_reminder_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/swDailyReminder"
+            app:layout_constraintTop_toBottomOf="@+id/textDailyReminder" />
+
+        <Switch
+            android:id="@+id/swDailyReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textDailyReminderDesc"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textDailyReminder" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Language container-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/conslaOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/labelOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_16dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:fontFamily="@font/lato_bold"
+            android:includeFontPadding="false"
+            android:text="@string/other"
+            android:textAllCaps="true"
+            android:textSize="@dimen/size_14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!---->
+        <!--Release Reminder-->
+        <!---->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelOther">
+
+            <TextView
+                android:id="@+id/textLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_semibold"
+                android:text="@string/language"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_18sp" />
+
+            <TextView
+                android:id="@+id/textLanguageDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_2dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@string/release_reminder_desc"
+                tools:text="English" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -26,4 +26,12 @@
     <string name="first_air_date">First Air Date</string>
     <string name="number_of_seasons">Number of Seasons</string>
     <string name="status">Status</string>
+    <string name="title_setting">Setting</string>
+    <string name="release_reminder">Release Reminder</string>
+    <string name="release_reminder_desc">Reminder showing the movie that released today</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="daily_reminder_desc">Reminder to return to app</string>
+    <string name="reminder">Reminder</string>
+    <string name="other">Other</string>
+    <string name="language">Language</string>
 </resources>
