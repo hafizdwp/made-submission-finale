@@ -1,28 +1,39 @@
 package me.hafizdwp.made_submission_final.data.source.local
 
-import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
+import android.content.Context
+import android.net.Uri
+import me.hafizdwp.made_submission_final.data.MyContentProvider
+import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.local.dao.FavoriteDao
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
-import me.hafizdwp.made_submission_final.data.source.MyDataSource
+import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.util.dbhelper.AppExecutors
 
 /**
  * @author hafizdwp
  * 24/07/2019
  **/
-class MyLocalDataSource private constructor(val appExecutors: AppExecutors,
-                                            val favoriteDao: FavoriteDao) :
-    MyDataSource {
+class MyLocalDataSource private constructor(val context: Context,
+                                            val appExecutors: AppExecutors,
+                                            val favoriteDao: FavoriteDao) : MyDataSource {
 
     override fun saveDataToFavorite(favoriteTable: FavoriteTable) {
         appExecutors.diskIO.execute {
-            favoriteDao.insert(favoriteTable)
+            // favoriteDao.insert(favoriteTable)
+            context.contentResolver.insert(
+                    MyContentProvider.URI_DB,
+                    FavoriteTable.toContentValues(favoriteTable))
         }
     }
 
     override fun deleteDataFromFavorite(favoriteTable: FavoriteTable) {
         appExecutors.diskIO.execute {
-            favoriteDao.delete(favoriteTable)
+            // favoriteDao.delete(favoriteTable)
+            context.contentResolver.delete(
+                    Uri.parse("${MyContentProvider.URI_DB}/${favoriteTable.id}"),
+                    "${FavoriteTable.COLUMN_ID}=${favoriteTable.id}",
+                    null
+            )
         }
     }
 
@@ -84,12 +95,13 @@ class MyLocalDataSource private constructor(val appExecutors: AppExecutors,
 
         @JvmStatic
         fun getInstance(
+                context: Context,
                 appExecutors: AppExecutors,
                 favoriteDao: FavoriteDao
         ): MyLocalDataSource {
             if (INSTANCE == null) {
                 synchronized(MyLocalDataSource::javaClass) {
-                    INSTANCE = MyLocalDataSource(appExecutors, favoriteDao)
+                    INSTANCE = MyLocalDataSource(context, appExecutors, favoriteDao)
                 }
             }
             return INSTANCE!!

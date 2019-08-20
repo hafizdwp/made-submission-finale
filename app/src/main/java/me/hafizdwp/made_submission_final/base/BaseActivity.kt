@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.get
 import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.set
 import me.hafizdwp.made_submission_final.util.ext.prefs
@@ -37,24 +37,24 @@ abstract class BaseActivity : AppCompatActivity() {
 
         // Set language api query in preference
         // based on current device's language/locale
-        val localeBefore: String = prefs[Constant.PREF_LANGUAGE_API_QUERY] ?: ""
+        val localeBefore: String = prefs[Const.PREF_LANGUAGE_API_QUERY] ?: ""
         val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
         when (currentLocale.language) {
             "in" -> {
 
                 // check if user has changed language
                 if (localeBefore == "en-US")
-                    prefs[Constant.PREF_SHOULD_LOAD_GENRE] = true
+                    prefs[Const.PREF_SHOULD_LOAD_GENRE] = true
 
-                prefs[Constant.PREF_LANGUAGE_API_QUERY] = "id"
+                prefs[Const.PREF_LANGUAGE_API_QUERY] = "id"
             }
             "en" -> {
 
                 // check if user has changed language
                 if (localeBefore == "id")
-                    prefs[Constant.PREF_SHOULD_LOAD_GENRE] = true
+                    prefs[Const.PREF_SHOULD_LOAD_GENRE] = true
 
-                prefs[Constant.PREF_LANGUAGE_API_QUERY] = "en-US"
+                prefs[Const.PREF_LANGUAGE_API_QUERY] = "en-US"
             }
         }
 

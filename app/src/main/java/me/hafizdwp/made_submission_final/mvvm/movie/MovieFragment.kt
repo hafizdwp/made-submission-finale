@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.movie_fragment.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.SplashscreenViewModel
 import me.hafizdwp.made_submission_final.base.BaseFragment
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.Pref
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
@@ -58,7 +58,7 @@ class MovieFragment : BaseFragment<MainActivity, MovieViewModel>(), MovieActionL
     }
 
     override fun start() {
-        val shouldLoadGenre: Boolean = prefs[Constant.PREF_SHOULD_LOAD_GENRE] ?: false
+        val shouldLoadGenre: Boolean = prefs[Const.PREF_SHOULD_LOAD_GENRE] ?: false
         if (shouldLoadGenre) {
             val splashscreenViewModel: SplashscreenViewModel = obtainViewModel()
             splashscreenViewModel.also { viewModel ->
@@ -80,7 +80,7 @@ class MovieFragment : BaseFragment<MainActivity, MovieViewModel>(), MovieActionL
                     }
 
                     requestSuccess.observe {
-                        prefs[Constant.PREF_SHOULD_LOAD_GENRE] = false
+                        prefs[Const.PREF_SHOULD_LOAD_GENRE] = false
                         mViewModel.getPopularMovies(mListMoviesGenre)
                         mViewModel.getNowPlayingMovies()
                     }
@@ -203,7 +203,7 @@ class MovieFragment : BaseFragment<MainActivity, MovieViewModel>(), MovieActionL
                 try {
                     val movieResponse: MovieResponse? = mListCarousel[position]
                     Glide.with(this@MovieFragment)
-                        .load(Constant.BASE_IMAGE_PATH + movieResponse?.poster_path)
+                        .load(Const.BASE_IMAGE_PATH + movieResponse?.poster_path)
                         .withLoadingPlaceholder(requireContext())
                         .into(imageCover)
                 } catch (e: Exception) {

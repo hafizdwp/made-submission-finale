@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import me.hafizdwp.made_submission_final.BuildConfig
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.source.local.dao.FavoriteDao
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 
@@ -15,10 +13,7 @@ import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
  * 24/07/2019
  **/
 
-@Database(
-        entities = [
-            FavoriteTable::class],
-        version = 1)
+@Database(entities = [FavoriteTable::class], version = 1)
 abstract class MyAppDatabase : RoomDatabase() {
 
     abstract fun favoriteDao(): FavoriteDao
@@ -40,7 +35,7 @@ abstract class MyAppDatabase : RoomDatabase() {
                 Room.databaseBuilder(
                         context.applicationContext,
                         MyAppDatabase::class.java,
-                        "movie.db")
+                        Const.DATABASE_NAME)
                         .fallbackToDestructiveMigration()
                         .build()
     }

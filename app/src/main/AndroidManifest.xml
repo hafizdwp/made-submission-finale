@@ -5,6 +5,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission
+        android:name="me.hafizdwp.made_submission_final.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="me.hafizdwp.made_submission_final.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -27,6 +35,14 @@
 
         <activity android:name=".mvvm.MainActivity" />
         <activity android:name=".mvvm.detail.DetailActivity" />
+
+        <provider
+            android:name=".data.MyContentProvider"
+            android:authorities="me.hafizdwp.made_submission_final.provider"
+            android:exported="true"
+            android:readPermission="me.hafizdwp.made_submission_final.READ_DATABASE"
+            android:writePermission="me.hafizdwp.made_submission_final.WRITE_DATABASE"
+            />
 
     </application>
 

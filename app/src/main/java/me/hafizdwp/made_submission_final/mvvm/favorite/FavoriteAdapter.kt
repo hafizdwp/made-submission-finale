@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.favorite_item.view.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
@@ -31,7 +31,7 @@ class FavoriteAdapter(
         itemView.apply {
 
             Glide.with(itemView.context)
-                    .load(Constant.BASE_IMAGE_PATH + model.poster_path)
+                    .load(Const.BASE_IMAGE_PATH + model.poster_path)
                     .into(image)
             textTitle.text = model.title
 

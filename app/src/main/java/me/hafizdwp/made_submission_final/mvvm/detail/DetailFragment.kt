@@ -11,7 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.detail_fragment.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
@@ -128,12 +128,12 @@ class DetailFragment : BaseFragment<DetailActivity, DetailViewModel>() {
         model.apply {
 
             Glide.with(this@DetailFragment)
-                    .load(Constant.BASE_IMAGE_PATH + backdrop_path)
+                    .load(Const.BASE_IMAGE_PATH + backdrop_path)
                     .withLoadingPlaceholder(requireContext())
                     .into(imageBackdrop)
 
             Glide.with(this@DetailFragment)
-                    .load(Constant.BASE_IMAGE_PATH + poster_path)
+                    .load(Const.BASE_IMAGE_PATH + poster_path)
                     .withLoadingPlaceholder(requireContext())
                     .into(imagePhoto)
 
@@ -206,12 +206,12 @@ class DetailFragment : BaseFragment<DetailActivity, DetailViewModel>() {
         model.apply {
 
             Glide.with(this@DetailFragment)
-                    .load(Constant.BASE_IMAGE_PATH + backdrop_path)
+                    .load(Const.BASE_IMAGE_PATH + backdrop_path)
                     .withLoadingPlaceholder(requireContext())
                     .into(imageBackdrop)
 
             Glide.with(this@DetailFragment)
-                    .load(Constant.BASE_IMAGE_PATH + poster_path)
+                    .load(Const.BASE_IMAGE_PATH + poster_path)
                     .withLoadingPlaceholder(requireContext())
                     .into(imagePhoto)
 

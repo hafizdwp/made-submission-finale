@@ -5,11 +5,9 @@ import com.bumptech.glide.RequestManager
 import kotlinx.android.synthetic.main.tvshow_item.view.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseRecyclerAdapter
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.mvvm.tvshow.TvShowActionListener
-import me.hafizdwp.made_submission_final.util.ext.log
-import me.hafizdwp.made_submission_final.util.ext.toJson
 import me.hafizdwp.made_submission_final.util.ext.visible
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
 
@@ -44,7 +42,7 @@ class TvShowSearchResultAdapter(
                 }
                 textRating.text = vote_average.toString()
 
-                glide.load(Constant.BASE_IMAGE_PATH + poster_path)
+                glide.load(Const.BASE_IMAGE_PATH + poster_path)
                         .withLoadingPlaceholder(itemView.context)
                         .into(imagePhoto)
 

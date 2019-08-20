@@ -86,6 +86,7 @@ class ViewModelFactory private constructor(
             return MyRepository.getInstance(
                     MyRemoteDataSource,
                     MyLocalDataSource.getInstance(
+                            context,
                             AppExecutors(),
                             localDatabase.favoriteDao()
                     )

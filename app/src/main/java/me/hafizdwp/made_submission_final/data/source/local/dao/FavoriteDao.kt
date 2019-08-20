@@ -1,5 +1,6 @@
 package me.hafizdwp.made_submission_final.data.source.local.dao
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Query
 import me.hafizdwp.made_submission_final.base.BaseDao
@@ -24,4 +25,16 @@ abstract class FavoriteDao : BaseDao<FavoriteTable> {
 
     @Query("SELECT * FROM table_favorite WHERE tvshow_id IS NOT 0")
     abstract fun getAllFavoritedTvShow(): List<FavoriteTable>
+
+
+    /// Provider exclusive DAO
+
+    @Query("DELETE FROM table_favorite WHERE _id = :id")
+    abstract fun deleteById(id: Long): Int
+
+    @Query("SELECT * FROM table_favorite")
+    abstract fun getAllFavoritedProvider(): Cursor
+
+    @Query("SELECT * FROM table_favorite WHERE _id = :id")
+    abstract fun getAllFavoritedByIdProvider(id: Long): Cursor
 }

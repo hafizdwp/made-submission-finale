@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.movie_carousel_fragment.*
 import me.hafizdwp.made_submission_final.R
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.util.ext.withArgs
 import me.hafizdwp.made_submission_final.util.ext.withLoadingPlaceholder
@@ -56,7 +56,7 @@ class MovieCarouselFragment : Fragment() {
             }
 
             Glide.with(this)
-                    .load(Constant.BASE_IMAGE_PATH + mMovieResponse?.backdrop_path)
+                    .load(Const.BASE_IMAGE_PATH + mMovieResponse?.backdrop_path)
                     .withLoadingPlaceholder(requireContext())
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {

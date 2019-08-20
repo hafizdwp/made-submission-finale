@@ -14,14 +14,14 @@ object Pref {
         get() = SharedPreferencesFactory.getSharedPreferences(MyApp.getContext())
 
     var listMoviesGenre: String?
-        get() = prefs[Constant.PREF_GENRE_MOVIES]
+        get() = prefs[Const.PREF_GENRE_MOVIES]
         set(value) {
-            prefs[Constant.PREF_GENRE_MOVIES] = value
+            prefs[Const.PREF_GENRE_MOVIES] = value
         }
 
     var listTvShowsGenre: String?
-        get() = prefs[Constant.PREF_GENRE_TVSHOWS]
+        get() = prefs[Const.PREF_GENRE_TVSHOWS]
         set(value) {
-            prefs[Constant.PREF_GENRE_TVSHOWS] = value
+            prefs[Const.PREF_GENRE_TVSHOWS] = value
         }
 }

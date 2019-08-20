@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.ConfigurationCompat
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main._splashscreen.*
-import me.hafizdwp.made_submission_final.data.Constant
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.data.Pref
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
 import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.set
@@ -34,10 +34,10 @@ class SplashscreenActivity : AppCompatActivity() {
         val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
         when (currentLocale.language) {
             "in" -> {
-                prefs[Constant.PREF_LANGUAGE_API_QUERY] = "id"
+                prefs[Const.PREF_LANGUAGE_API_QUERY] = "id"
             }
             "en" -> // English
-                prefs[Constant.PREF_LANGUAGE_API_QUERY] = "en-US"
+                prefs[Const.PREF_LANGUAGE_API_QUERY] = "en-US"
         }
 
         setupObserver()
