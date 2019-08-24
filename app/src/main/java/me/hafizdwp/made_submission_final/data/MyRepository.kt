@@ -16,8 +16,11 @@ import me.hafizdwp.made_submission_final.util.ext.asyncAwait
  **/
 open class MyRepository(
     val remoteDataSource: MyRemoteDataSource,
-    val localDataSource: MyLocalDataSource
-) : MyDataSource {
+    val localDataSource: MyLocalDataSource) : MyDataSource {
+
+    override suspend fun getAllFavorited(): Deferred<List<FavoriteTable>> {
+        return asyncAwait { localDataSource.getAllFavorited() }
+    }
 
     override suspend fun getTvShowBySearch(query: String): Deferred<BaseApiModel<List<TvShowResponse>>> {
         return asyncAwait { remoteDataSource.getTvShowBySearch(query = query) }
@@ -71,16 +74,8 @@ open class MyRepository(
         localDataSource.getMovieFromFavorite(movieId, callback)
     }
 
-    override fun getMoviesFromFavorite(callback: MyResponseCallback<List<FavoriteTable>>) {
-        localDataSource.getMoviesFromFavorite(callback)
-    }
-
     override fun getTvShowFromFavorite(tvShowId: Int, callback: MyResponseCallback<FavoriteTable>) {
         localDataSource.getTvShowFromFavorite(tvShowId, callback)
-    }
-
-    override fun getTvShowsFromFavorite(callback: MyResponseCallback<List<FavoriteTable>>) {
-        localDataSource.getTvShowsFromFavorite(callback)
     }
 
     companion object {

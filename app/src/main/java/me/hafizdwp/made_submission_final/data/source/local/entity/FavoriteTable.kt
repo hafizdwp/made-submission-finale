@@ -1,6 +1,7 @@
 package me.hafizdwp.made_submission_final.data.source.local.entity
 
 import android.content.ContentValues
+import android.database.Cursor
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -49,7 +50,6 @@ data class FavoriteTable(
         const val COLUMN_BACKDROP_PATH = "backdrop_path"
         const val COLUMN_LIST_GENRE = "list_genre"
 
-
         fun from(movieResponse: MovieResponse): FavoriteTable {
             with(movieResponse) {
                 return FavoriteTable(
@@ -97,6 +97,25 @@ data class FavoriteTable(
                 put(COLUMN_BACKDROP_PATH, data.backdrop_path)
                 put(COLUMN_LIST_GENRE, data.listGenre)
             }
+        }
+
+        fun toListFromCursor(cursor: Cursor?): List<FavoriteTable> {
+            val array = ArrayList<FavoriteTable>()
+            while (cursor?.moveToNext() == true) {
+                cursor.apply {
+                    val favoriteModel = FavoriteTable(
+                        id = getInt(getColumnIndexOrThrow(COLUMN_ID)),
+                        movie_id = getInt(getColumnIndexOrThrow(COLUMN_MOVIE_ID)),
+                        tvshow_id = getInt(getColumnIndexOrThrow(COLUMN_TVSHOW_ID)),
+                        title = getString(getColumnIndexOrThrow(COLUMN_TITLE)),
+                        poster_path = getString(getColumnIndexOrThrow(COLUMN_POSTER_PATH)),
+                        backdrop_path = getString(getColumnIndexOrThrow(COLUMN_BACKDROP_PATH)),
+                        listGenre = getString(getColumnIndexOrThrow(COLUMN_LIST_GENRE)))
+                    array.add(favoriteModel)
+                }
+            }
+
+            return array
         }
     }
 }

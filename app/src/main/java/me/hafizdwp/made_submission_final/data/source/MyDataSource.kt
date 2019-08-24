@@ -4,7 +4,11 @@ import kotlinx.coroutines.Deferred
 import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
-import me.hafizdwp.made_submission_final.data.source.remote.model.*
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
 import me.hafizdwp.made_submission_final.util.ext.async
 
 /**
@@ -28,10 +32,11 @@ interface MyDataSource {
     fun getTvShowDetails(tvShowId: Int, callback: MyResponseCallback<TvShowDetailResponse>) {}
 
     suspend fun getMoviesBySearch(query: String): Deferred<BaseApiModel<List<MovieResponse>>> {
-        return async { BaseApiModel<List<MovieResponse>>() }
+        throw IllegalAccessException("please override and don't use super")
     }
+
     suspend fun getTvShowBySearch(query: String): Deferred<BaseApiModel<List<TvShowResponse>>> {
-        return async { BaseApiModel<List<TvShowResponse>>() }
+        throw IllegalAccessException("please override and don't use super")
     }
 
 
@@ -39,10 +44,12 @@ interface MyDataSource {
     /// Local
     ///
 
+    suspend fun getAllFavorited(): Deferred<List<FavoriteTable>> {
+        throw IllegalAccessException("please override and don't use super")
+    }
+
     fun saveDataToFavorite(favoriteTable: FavoriteTable) {}
     fun deleteDataFromFavorite(favoriteTable: FavoriteTable) {}
     fun getMovieFromFavorite(movieId: Int, callback: MyResponseCallback<FavoriteTable>) {}
-    fun getMoviesFromFavorite(callback: MyResponseCallback<List<FavoriteTable>>) {}
     fun getTvShowFromFavorite(tvShowId: Int, callback: MyResponseCallback<FavoriteTable>) {}
-    fun getTvShowsFromFavorite(callback: MyResponseCallback<List<FavoriteTable>>) {}
 }

@@ -2,12 +2,14 @@ package me.hafizdwp.made_submission_final.data.source.local
 
 import android.content.Context
 import android.net.Uri
+import kotlinx.coroutines.Deferred
 import me.hafizdwp.made_submission_final.data.MyContentProvider
 import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.local.dao.FavoriteDao
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.util.dbhelper.AppExecutors
+import me.hafizdwp.made_submission_final.util.ext.async
 
 /**
  * @author hafizdwp
@@ -16,6 +18,12 @@ import me.hafizdwp.made_submission_final.util.dbhelper.AppExecutors
 class MyLocalDataSource private constructor(val context: Context,
                                             val appExecutors: AppExecutors,
                                             val favoriteDao: FavoriteDao) : MyDataSource {
+
+    override suspend fun getAllFavorited(): Deferred<List<FavoriteTable>> {
+        return async {
+            favoriteDao.getAllFavorited()
+        }
+    }
 
     override fun saveDataToFavorite(favoriteTable: FavoriteTable) {
         appExecutors.diskIO.execute {
@@ -50,38 +58,12 @@ class MyLocalDataSource private constructor(val context: Context,
         }
     }
 
-    override fun getMoviesFromFavorite(callback: MyResponseCallback<List<FavoriteTable>>) {
-        appExecutors.diskIO.execute {
-            val data = favoriteDao.getAllFavoritedMovies()
-
-            appExecutors.mainThread.execute {
-                if (!data.isNullOrEmpty())
-                    callback.onDataAvailable(data)
-                else
-                    callback.onDataNotAvailable()
-            }
-        }
-    }
-
     override fun getTvShowFromFavorite(tvShowId: Int, callback: MyResponseCallback<FavoriteTable>) {
         appExecutors.diskIO.execute {
             val data = favoriteDao.getFavoritedTvShowById(tvShowId)
 
             appExecutors.mainThread.execute {
                 if (data != null)
-                    callback.onDataAvailable(data)
-                else
-                    callback.onDataNotAvailable()
-            }
-        }
-    }
-
-    override fun getTvShowsFromFavorite(callback: MyResponseCallback<List<FavoriteTable>>) {
-        appExecutors.diskIO.execute {
-            val data = favoriteDao.getAllFavoritedTvShow()
-
-            appExecutors.mainThread.execute {
-                if (!data.isNullOrEmpty())
                     callback.onDataAvailable(data)
                 else
                     callback.onDataNotAvailable()

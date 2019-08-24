@@ -5,61 +5,59 @@ import androidx.lifecycle.MutableLiveData
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseViewModel
 import me.hafizdwp.made_submission_final.data.MyRepository
-import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
+import me.hafizdwp.made_submission_final.util.ext.await
 import me.hafizdwp.made_submission_final.util.ext.call
+import me.hafizdwp.made_submission_final.util.ext.launch
 
 /**
  * @author hafizdwp
  * 10/07/19
  **/
 class FavoriteViewModel(
-    application: Application, val mRepository: MyRepository
+    application: Application,
+    val mRepository: MyRepository
 ) : BaseViewModel(application) {
 
     val startProgress = MutableLiveData<Void>()
     val requestSuccess = MutableLiveData<Void>()
     val requestEmpty = MutableLiveData<Int>()
+    val requestFailed = MutableLiveData<String>()
     val listMovieFavoritedLive = MutableLiveData<List<FavoriteTable>>()
     val listTvShowFavoritedLive = MutableLiveData<List<FavoriteTable>>()
-    var isBothEmpty = 0
 
 
-    fun getFavoritedMovies() {
-        startProgress.call()
-        mRepository.getMoviesFromFavorite(object :
-            MyResponseCallback<List<FavoriteTable>> {
-            override fun onDataAvailable(data: List<FavoriteTable>?) {
-                requestSuccess.call()
-                listMovieFavoritedLive.value = data
-            }
+    fun getAllFavorited() {
+        launch {
+            try {
+                startProgress.call()
 
-            override fun onDataNotAvailable() {
-                isBothEmpty++
-            }
+                val listFavorited: List<FavoriteTable> =
+                    await { mRepository.getAllFavorited() }
+                val listMovieModel = ArrayList<FavoriteTable>()
+                val listTvModel = ArrayList<FavoriteTable>()
 
-            override fun onError(code: Int?, errorMessage: String?) {}
-        })
-    }
+                if (listFavorited.isNotEmpty()) {
+                    listFavorited.forEach { model ->
+                        when {
+                            model.movie_id != 0 ->
+                                listMovieModel.add(model)
+                            model.tvshow_id != 0 ->
+                                listTvModel.add(model)
+                        }
+                    }
 
-    fun getFavoritedTvShows() {
-        mRepository.getTvShowsFromFavorite(object :
-            MyResponseCallback<List<FavoriteTable>> {
-            override fun onDataAvailable(data: List<FavoriteTable>?) {
-                requestSuccess.call()
-                listTvShowFavoritedLive.value = data
-            }
+                    listMovieFavoritedLive.value = listMovieModel
+                    listTvShowFavoritedLive.value = listTvModel
 
-            override fun onDataNotAvailable() {
-                isBothEmpty++
-
-                if (isBothEmpty == 2) {
-                    isBothEmpty = 0
+                    requestSuccess.call()
+                } else {
                     requestEmpty.value = R.string.no_favorite
                 }
-            }
 
-            override fun onError(code: Int?, errorMessage: String?) {}
-        })
+            } catch (t: Throwable) {
+                requestFailed.value = t.getErrorMessage<FavoriteTable>()
+            }
+        }
     }
 }

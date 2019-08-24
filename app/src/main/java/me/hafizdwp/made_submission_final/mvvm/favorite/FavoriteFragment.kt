@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.favorite_fragment.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
+import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
-import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
 import me.hafizdwp.made_submission_final.mvvm.detail.DetailActivity
 import me.hafizdwp.made_submission_final.mvvm.movie.MovieActionListener
@@ -48,8 +48,9 @@ class FavoriteFragment : BaseFragment<MainActivity, FavoriteViewModel>(),
     override fun onResume() {
         super.onResume()
 
-        mViewModel.getFavoritedMovies()
-        mViewModel.getFavoritedTvShows()
+        mViewModel.getAllFavorited()
+//        mViewModel.getFavoritedMovies()
+//        mViewModel.getFavoritedTvShows()
     }
 
     override fun setupObserver(): FavoriteViewModel? {
@@ -64,6 +65,10 @@ class FavoriteFragment : BaseFragment<MainActivity, FavoriteViewModel>(),
 
             requestEmpty.observe { stringRes ->
                 myProgressView.stopAndError(getString(stringRes!!), false)
+            }
+
+            requestFailed.observe { errorMsg ->
+                myProgressView.stopAndError(errorMsg!!, false)
             }
 
             listMovieFavoritedLive.observe { listFavorite ->

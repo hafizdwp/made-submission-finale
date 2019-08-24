@@ -14,17 +14,14 @@ import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 @Dao
 abstract class FavoriteDao : BaseDao<FavoriteTable> {
 
+    @Query("SELECT * FROM table_favorite")
+    abstract fun getAllFavorited(): List<FavoriteTable>
+
     @Query("SELECT * FROM table_favorite WHERE movie_id = :movieId")
     abstract fun getFavoritedMovieById(movieId: Int): FavoriteTable?
 
-    @Query("SELECT * FROM table_favorite WHERE movie_id IS NOT 0")
-    abstract fun getAllFavoritedMovies(): List<FavoriteTable>
-
     @Query("SELECT * FROM table_favorite WHERE tvshow_id = :tvShowId")
     abstract fun getFavoritedTvShowById(tvShowId: Int): FavoriteTable?
-
-    @Query("SELECT * FROM table_favorite WHERE tvshow_id IS NOT 0")
-    abstract fun getAllFavoritedTvShow(): List<FavoriteTable>
 
 
     /// Provider exclusive DAO
