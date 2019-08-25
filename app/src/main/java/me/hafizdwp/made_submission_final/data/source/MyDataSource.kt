@@ -9,6 +9,7 @@ import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailRes
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import me.hafizdwp.made_submission_final.mvvm.setting.AlarmType
 import me.hafizdwp.made_submission_final.util.ext.async
 
 /**
@@ -52,4 +53,9 @@ interface MyDataSource {
     fun deleteDataFromFavorite(favoriteTable: FavoriteTable) {}
     fun getMovieFromFavorite(movieId: Int, callback: MyResponseCallback<FavoriteTable>) {}
     fun getTvShowFromFavorite(tvShowId: Int, callback: MyResponseCallback<FavoriteTable>) {}
+
+    fun saveAlarmStatus(alarmType: AlarmType, status: Boolean) {}
+    fun getAlarmStatus(alarmType: AlarmType): Boolean {
+        return false
+    }
 }

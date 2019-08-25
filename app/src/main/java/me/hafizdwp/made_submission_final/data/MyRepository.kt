@@ -7,7 +7,12 @@ import me.hafizdwp.made_submission_final.data.source.local.MyLocalDataSource
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.remote.MyRemoteDataSource
 import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
-import me.hafizdwp.made_submission_final.data.source.remote.model.*
+import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowDetailResponse
+import me.hafizdwp.made_submission_final.data.source.remote.model.TvShowResponse
+import me.hafizdwp.made_submission_final.mvvm.setting.AlarmType
 import me.hafizdwp.made_submission_final.util.ext.asyncAwait
 
 /**
@@ -15,8 +20,17 @@ import me.hafizdwp.made_submission_final.util.ext.asyncAwait
  * 10/07/19
  **/
 open class MyRepository(
-    val remoteDataSource: MyRemoteDataSource,
-    val localDataSource: MyLocalDataSource) : MyDataSource {
+        val remoteDataSource: MyRemoteDataSource,
+        val localDataSource: MyLocalDataSource) : MyDataSource {
+
+
+    override fun getAlarmStatus(alarmType: AlarmType): Boolean {
+        return localDataSource.getAlarmStatus(alarmType)
+    }
+
+    override fun saveAlarmStatus(alarmType: AlarmType, status: Boolean) {
+        localDataSource.saveAlarmStatus(alarmType, status)
+    }
 
     override suspend fun getAllFavorited(): Deferred<List<FavoriteTable>> {
         return asyncAwait { localDataSource.getAllFavorited() }
@@ -86,14 +100,14 @@ open class MyRepository(
          */
         @JvmStatic
         fun getInstance(
-            remoteDataSource: MyRemoteDataSource,
-            localDataSource: MyLocalDataSource
+                remoteDataSource: MyRemoteDataSource,
+                localDataSource: MyLocalDataSource
         ) =
-            INSTANCE
-                ?: synchronized(MyRepository::class.java) {
-                    INSTANCE
-                        ?: MyRepository(remoteDataSource, localDataSource)
-                            .also { INSTANCE = it }
-                }
+                INSTANCE
+                        ?: synchronized(MyRepository::class.java) {
+                            INSTANCE
+                                    ?: MyRepository(remoteDataSource, localDataSource)
+                                            .also { INSTANCE = it }
+                        }
     }
 }

@@ -34,4 +34,5 @@
     <string name="reminder">Reminder</string>
     <string name="other">Other</string>
     <string name="language">Language</string>
+    <string name="error_exception">Something wrong with your code</string>
 </resources>

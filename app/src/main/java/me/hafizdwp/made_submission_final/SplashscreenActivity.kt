@@ -34,10 +34,10 @@ class SplashscreenActivity : AppCompatActivity() {
         val currentLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
         when (currentLocale.language) {
             "in" -> {
-                prefs[Const.PREF_LANGUAGE_API_QUERY] = "id"
+                prefs[Pref.PREF_LANGUAGE_API_QUERY] = "id"
             }
             "en" -> // English
-                prefs[Const.PREF_LANGUAGE_API_QUERY] = "en-US"
+                prefs[Pref.PREF_LANGUAGE_API_QUERY] = "en-US"
         }
 
         setupObserver()

@@ -1,5 +1,9 @@
 package me.hafizdwp.made_submission_final.data
 
+import me.hafizdwp.made_submission_final.BuildConfig
+import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.get
+import me.hafizdwp.made_submission_final.util.ext.prefs
+
 /**
  * @author hafizdwp
  * 10/07/19
@@ -7,11 +11,13 @@ package me.hafizdwp.made_submission_final.data
 object Const {
 
     const val BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/original"
-
     const val DATABASE_NAME = "cinema.db"
 
-    const val PREF_LANGUAGE_API_QUERY = "pref_language_api_query"
-    const val PREF_SHOULD_LOAD_GENRE = "pref_should_load_genre"
-    const val PREF_GENRE_MOVIES = "pref_movies_genre"
-    const val PREF_GENRE_TVSHOWS = "pref_tvshows_genre"
+    fun getApiKey(): String {
+        return BuildConfig.BASE_API_KEY
+    }
+
+    fun getLanguagePreference(): String {
+        return prefs[Pref.PREF_LANGUAGE_API_QUERY] ?: "en-US"
+    }
 }

@@ -4,10 +4,12 @@ import android.content.Context
 import android.net.Uri
 import kotlinx.coroutines.Deferred
 import me.hafizdwp.made_submission_final.data.MyContentProvider
+import me.hafizdwp.made_submission_final.data.Pref
 import me.hafizdwp.made_submission_final.data.source.MyDataSource
 import me.hafizdwp.made_submission_final.data.source.local.dao.FavoriteDao
 import me.hafizdwp.made_submission_final.data.source.local.entity.FavoriteTable
 import me.hafizdwp.made_submission_final.data.source.remote.MyResponseCallback
+import me.hafizdwp.made_submission_final.mvvm.setting.AlarmType
 import me.hafizdwp.made_submission_final.util.dbhelper.AppExecutors
 import me.hafizdwp.made_submission_final.util.ext.async
 
@@ -18,6 +20,20 @@ import me.hafizdwp.made_submission_final.util.ext.async
 class MyLocalDataSource private constructor(val context: Context,
                                             val appExecutors: AppExecutors,
                                             val favoriteDao: FavoriteDao) : MyDataSource {
+
+    override fun getAlarmStatus(alarmType: AlarmType): Boolean {
+        return when (alarmType) {
+            AlarmType.DAILY -> Pref.dailyAlarmStatus ?: false
+            AlarmType.RELEASE -> Pref.releaseAlarmStatus ?: false
+        }
+    }
+
+    override fun saveAlarmStatus(alarmType: AlarmType, status: Boolean) {
+        when (alarmType) {
+            AlarmType.DAILY -> Pref.dailyAlarmStatus = status
+            AlarmType.RELEASE -> Pref.releaseAlarmStatus = status
+        }
+    }
 
     override suspend fun getAllFavorited(): Deferred<List<FavoriteTable>> {
         return async {

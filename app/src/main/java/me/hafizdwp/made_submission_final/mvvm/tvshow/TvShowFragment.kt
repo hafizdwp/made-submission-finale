@@ -58,7 +58,7 @@ class TvShowFragment : BaseFragment<MainActivity, TvShowViewModel>(), TvShowActi
     }
 
     override fun start() {
-        val shouldLoadGenre: Boolean = prefs[Const.PREF_SHOULD_LOAD_GENRE] ?: false
+        val shouldLoadGenre: Boolean = prefs[Pref.PREF_SHOULD_LOAD_GENRE] ?: false
         if (shouldLoadGenre) {
             val splashscreenViewModel: SplashscreenViewModel = obtainViewModel()
             splashscreenViewModel.also { viewModel ->
@@ -79,7 +79,7 @@ class TvShowFragment : BaseFragment<MainActivity, TvShowViewModel>(), TvShowActi
                     }
 
                     requestSuccess.observe {
-                        prefs[Const.PREF_SHOULD_LOAD_GENRE] = false
+                        prefs[Pref.PREF_SHOULD_LOAD_GENRE] = false
                         mViewModel.getPopularTvShows(mListTvShowGenre)
                         mViewModel.getOnAirTvShows()
                     }
