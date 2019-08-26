@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import kotlinx.android.synthetic.main.setting_fragment.*
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.base.BaseFragment
+import me.hafizdwp.made_submission_final.data.Const
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
 import me.hafizdwp.made_submission_final.util.ext.obtainViewModel
 import me.hafizdwp.made_submission_final.util.ext.withArgs
@@ -23,22 +24,12 @@ class SettingFragment : BaseFragment<MainActivity, SettingViewModel>() {
 
 
     override fun onViewReady() {
-
-        setupSwitchRelease()
-        setupSwitchDaily()
-    }
-
-    private fun setupSwitchDaily() {
         swDailyReminder.setOnCheckedChangeListener { compoundButton, isChecked ->
             mViewModel.saveAlarmStatus(AlarmType.DAILY, isChecked)
         }
         swReleaseReminder.setOnCheckedChangeListener { compoundButton, isChecked ->
             mViewModel.saveAlarmStatus(AlarmType.RELEASE, isChecked)
         }
-    }
-
-    private fun setupSwitchRelease() {
-
     }
 
     override fun start() {
@@ -49,18 +40,48 @@ class SettingFragment : BaseFragment<MainActivity, SettingViewModel>() {
     override fun setupObserver(): SettingViewModel? {
         return mViewModel.apply {
             dailyAlarmStatus.observe { status ->
-                when (status) {
-                    true -> swDailyReminder.isChecked = true
-                    false -> swDailyReminder.isChecked = false
-                    else -> swDailyReminder.isChecked = false
+                swDailyReminder.isChecked = when (status) {
+                    true -> true
+                    false -> false
+                    else -> false
                 }
             }
 
             releaseAlarmStatus.observe { status ->
+                swReleaseReminder.isChecked = when (status) {
+                    true -> true
+                    false -> false
+                    else -> false
+                }
+            }
+
+            onDailySwitchChanged.observe { status ->
                 when (status) {
-                    true -> swReleaseReminder.isChecked = true
-                    false -> swReleaseReminder.isChecked = false
-                    else -> swReleaseReminder.isChecked = false
+                    true -> AlarmReceiver.setupAlarm(
+                            context = requireContext(),
+                            title = "Daily Reminder",
+                            message = "We have something for you",
+                            type = AlarmType.DAILY,
+                            time = Const.ALARM_DAILY_TIME)
+
+                    false -> AlarmReceiver.cancelAlarm(
+                            context = requireContext(),
+                            type = AlarmType.DAILY)
+                }
+            }
+
+            onReleaseSwitchChanged.observe { status ->
+                when (status) {
+                    true -> AlarmReceiver.setupAlarm(
+                            context = requireContext(),
+                            title = "Release Reminder",
+                            message = "New release! Check it out.",
+                            type = AlarmType.RELEASE,
+                            time = Const.ALARM_RELEASE_TIME)
+
+                    false -> AlarmReceiver.cancelAlarm(
+                            context = requireContext(),
+                            type = AlarmType.RELEASE)
                 }
             }
         }

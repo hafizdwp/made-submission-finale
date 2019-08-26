@@ -14,11 +14,17 @@ class SettingViewModel(application: Application,
 
     val dailyAlarmStatus = MutableLiveData<Boolean>()
     val releaseAlarmStatus = MutableLiveData<Boolean>()
-
+    val onDailySwitchChanged = MutableLiveData<Boolean>()
+    val onReleaseSwitchChanged = MutableLiveData<Boolean>()
 
     fun saveAlarmStatus(alarmType: AlarmType,
                         status: Boolean) {
         mRepository.saveAlarmStatus(alarmType, status)
+
+        when (alarmType) {
+            AlarmType.DAILY -> onDailySwitchChanged.value = status
+            AlarmType.RELEASE -> onReleaseSwitchChanged.value = status
+        }
     }
 
     fun getAlarmStatus(alarmType: AlarmType) {

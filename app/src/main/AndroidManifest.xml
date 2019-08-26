@@ -4,6 +4,8 @@
     package="me.hafizdwp.made_submission_final">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
 
     <permission
         android:name="me.hafizdwp.made_submission_final.READ_DATABASE"
@@ -41,8 +43,12 @@
             android:authorities="me.hafizdwp.made_submission_final.provider"
             android:exported="true"
             android:readPermission="me.hafizdwp.made_submission_final.READ_DATABASE"
-            android:writePermission="me.hafizdwp.made_submission_final.WRITE_DATABASE"
-            />
+            android:writePermission="me.hafizdwp.made_submission_final.WRITE_DATABASE" />
+
+        <receiver
+            android:name=".mvvm.setting.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
 
     </application>
 

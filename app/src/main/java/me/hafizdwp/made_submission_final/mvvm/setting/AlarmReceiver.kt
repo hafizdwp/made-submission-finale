@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import me.hafizdwp.made_submission_final.R
+import me.hafizdwp.made_submission_final.util.MyNotification
 import me.hafizdwp.made_submission_final.util.ext.log
 import java.util.*
 
@@ -18,13 +19,13 @@ class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
 
-        const val EXTRA_ALARM_TITLE = "alarm_title"
-        const val EXTRA_ALARM_MESSAGE = "alarm_message"
-        const val EXTRA_NOTIFICATION_ID = "notification_id"
-        const val TYPE_DAILY = 100
-        const val TYPE_RELEASE = 200
+        private const val EXTRA_ALARM_TITLE = "alarm_title"
+        private const val EXTRA_ALARM_MESSAGE = "alarm_message"
+        private const val EXTRA_ALARM_TYPE = "alarm_type"
+        private const val TYPE_DAILY = 100
+        private const val TYPE_RELEASE = 200
 
-        private fun getAlarmTypeRequestCode(alarmType: AlarmType): Int {
+        private fun getAlarmTypeCode(alarmType: AlarmType): Int {
             return when (alarmType) {
                 AlarmType.RELEASE -> TYPE_RELEASE
                 AlarmType.DAILY -> TYPE_DAILY
@@ -36,7 +37,7 @@ class AlarmReceiver : BroadcastReceiver() {
             val intent = Intent(context, AlarmReceiver::class.java).apply {
                 putExtra(EXTRA_ALARM_TITLE, title)
                 putExtra(EXTRA_ALARM_MESSAGE, message)
-                putExtra(EXTRA_NOTIFICATION_ID, getAlarmTypeRequestCode(type))
+                putExtra(EXTRA_ALARM_TYPE, getAlarmTypeCode(type))
             }
 
             val timeArray = time.split(":")
@@ -46,7 +47,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 set(Calendar.SECOND, 0)
             }
 
-            val requestCode = getAlarmTypeRequestCode(type)
+            val requestCode = getAlarmTypeCode(type)
             val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
 
             alarmManager.setInexactRepeating(
@@ -63,7 +64,7 @@ class AlarmReceiver : BroadcastReceiver() {
             val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val intent = Intent(context, AlarmReceiver::class.java)
 
-            val requestCode = getAlarmTypeRequestCode(type)
+            val requestCode = getAlarmTypeCode(type)
             val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
 
             pendingIntent.cancel()
@@ -77,12 +78,11 @@ class AlarmReceiver : BroadcastReceiver() {
         intent?.apply {
             val title = getStringExtra(EXTRA_ALARM_TITLE)
             val message = getStringExtra(EXTRA_ALARM_MESSAGE)
-            val notificationId = getIntExtra(EXTRA_NOTIFICATION_ID, 0)
-            when (notificationId) {
+            val typeCode = getIntExtra(EXTRA_ALARM_TYPE, 0)
+            when (typeCode) {
                 TYPE_DAILY -> {
-                    //TODO: ganti
-                    log(title)
-                    log(message)
+                    MyNotification.createNotification(
+                            requireNotNull(context), title, message, null)
                 }
                 TYPE_RELEASE -> {
                     //TODO: ganti
