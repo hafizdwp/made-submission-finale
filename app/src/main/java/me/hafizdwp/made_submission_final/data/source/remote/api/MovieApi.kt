@@ -5,6 +5,7 @@ import kotlinx.coroutines.Deferred
 import me.hafizdwp.made_submission_final.base.BaseApiModel
 import me.hafizdwp.made_submission_final.data.Const.getApiKey
 import me.hafizdwp.made_submission_final.data.Const.getLanguagePreference
+import me.hafizdwp.made_submission_final.data.Const.getTime
 import me.hafizdwp.made_submission_final.data.source.remote.model.GenreResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieDetailResponse
 import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
@@ -48,5 +49,12 @@ interface MovieApi {
             @Query("api_key") apiKey: String = getApiKey(),
             @Query("language") language: String = getLanguagePreference(),
             @Query("query") query: String
+    ): Deferred<BaseApiModel<List<MovieResponse>>>
+
+    @GET("discover/movie")
+    fun getNewReleaseMovie(
+            @Query("api_key") apiKey: String = getApiKey(),
+            @Query("primary_release_date.gte") gteDate: String = getTime(),
+            @Query("primary_release_date.lte") lteDate: String = getTime()
     ): Deferred<BaseApiModel<List<MovieResponse>>>
 }

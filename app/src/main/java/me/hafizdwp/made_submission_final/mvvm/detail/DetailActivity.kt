@@ -49,9 +49,9 @@ class DetailActivity : BaseActivity() {
     }
 
     companion object {
-        private const val EXTRA_MOVIE_ID = "extra_movie_id"
+        const val EXTRA_MOVIE_ID = "extra_movie_id"
+        const val EXTRA_MOVIE_RESPONSE = "extra_movie_response"
         private const val EXTRA_TVSHOW_ID = "extra_tvshow_id"
-        private const val EXTRA_MOVIE_RESPONSE = "extra_movie_response"
         private const val EXTRA_TVSHOW_RESPONSE = "extra_tvshow_response"
 
         fun startActivity(context: Context,

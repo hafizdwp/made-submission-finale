@@ -26,7 +26,15 @@ fun <T> async(
 
 fun <T> asyncAwait(
         tobeAwait: suspend () -> Deferred<T>): Deferred<T> {
-        return async { tobeAwait.invoke().await() }
+    return async { tobeAwait.invoke().await() }
+}
+
+suspend fun <T> asyncAwaits(
+        context: CoroutineContext = Dispatchers.IO,
+        runner: suspend CoroutineScope.() -> T): T {
+    return CoroutineScope(context).async {
+        runner.invoke(this)
+    }.await()
 }
 
 

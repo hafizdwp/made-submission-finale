@@ -12,7 +12,10 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import me.hafizdwp.made_submission_final.R
+import me.hafizdwp.made_submission_final.data.source.remote.model.MovieResponse
 import me.hafizdwp.made_submission_final.mvvm.MainActivity
+import me.hafizdwp.made_submission_final.mvvm.detail.DetailActivity
+import me.hafizdwp.made_submission_final.mvvm.setting.AlarmReceiver
 import java.util.*
 
 /**
@@ -22,15 +25,32 @@ import java.util.*
 class MyNotification {
 
     companion object {
-        fun createNotification(context: Context, title: String?, message: String?, bitmap: Bitmap?) {
+        fun createNotificationDaily(context: Context, title: String?, message: String?) {
+            
             val intent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
             val pendingIntent = TaskStackBuilder.create(context).run {
                 addNextIntentWithParentStack(intent)
-                getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+                getPendingIntent(AlarmReceiver.TYPE_DAILY, PendingIntent.FLAG_UPDATE_CURRENT)
             }
+
+            sendNotification(context, title, message, null, pendingIntent)
+        }
+
+        fun createNotificationRelease(context: Context, title: String?, message: String?, bitmap: Bitmap?,
+                                      movieResponse: MovieResponse?) {
+
+            val intent = Intent(context, DetailActivity::class.java).apply {
+                putExtra(DetailActivity.EXTRA_MOVIE_ID, movieResponse?.id ?: -1)
+                putExtra(DetailActivity.EXTRA_MOVIE_RESPONSE, movieResponse)
+            }
+            val pendingIntent = TaskStackBuilder.create(context).run {
+                addNextIntentWithParentStack(intent)
+                getPendingIntent(AlarmReceiver.TYPE_RELEASE, PendingIntent.FLAG_UPDATE_CURRENT)
+            }
+
             sendNotification(context, title, message, bitmap, pendingIntent)
         }
 

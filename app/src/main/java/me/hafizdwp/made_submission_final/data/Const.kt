@@ -3,6 +3,8 @@ package me.hafizdwp.made_submission_final.data
 import me.hafizdwp.made_submission_final.BuildConfig
 import me.hafizdwp.made_submission_final.util.SharedPreferencesFactory.get
 import me.hafizdwp.made_submission_final.util.ext.prefs
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @author hafizdwp
@@ -22,5 +24,12 @@ object Const {
 
     fun getLanguagePreference(): String {
         return prefs[Pref.PREF_LANGUAGE_API_QUERY] ?: "en-US"
+    }
+
+    fun getTime(): String {
+        val calendar = Calendar.getInstance()
+        calendar.timeZone = TimeZone.getTimeZone("GMT+07:00")
+
+        return SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
     }
 }

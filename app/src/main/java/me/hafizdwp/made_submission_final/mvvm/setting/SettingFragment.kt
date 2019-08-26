@@ -59,8 +59,8 @@ class SettingFragment : BaseFragment<MainActivity, SettingViewModel>() {
                 when (status) {
                     true -> AlarmReceiver.setupAlarm(
                             context = requireContext(),
-                            title = "Daily Reminder",
-                            message = "We have something for you",
+                            title = getString(R.string.alarm_daily_reminder_title),
+                            message = getString(R.string.alarm_daily_reminder_label),
                             type = AlarmType.DAILY,
                             time = Const.ALARM_DAILY_TIME)
 
@@ -74,8 +74,8 @@ class SettingFragment : BaseFragment<MainActivity, SettingViewModel>() {
                 when (status) {
                     true -> AlarmReceiver.setupAlarm(
                             context = requireContext(),
-                            title = "Release Reminder",
-                            message = "New release! Check it out.",
+                            title = getString(R.string.alarm_release_reminder_title),
+                            message = getString(R.string.alarm_release_reminder_label),
                             type = AlarmType.RELEASE,
                             time = Const.ALARM_RELEASE_TIME)
 

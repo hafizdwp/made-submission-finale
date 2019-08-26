@@ -35,8 +35,12 @@
     <string name="other">Other</string>
     <string name="language">Language</string>
     <string name="error_exception">Something wrong with your code</string>
-    <string name="alarm_daily_activated">Daily Reminder activated</string>
+    <string name="alarm_daily_activated">Daily reminder activated</string>
     <string name="alarm_release_activated">New Release reminder activated</string>
     <string name="alarm_daily_deactivated">Daily Reminder deactivated</string>
     <string name="alarm_release_deactivated">New Release reminder deactivated</string>
+    <string name="alarm_daily_reminder_title">Daily Reminder</string>
+    <string name="alarm_daily_reminder_label">Start your day by checking the popular movies or tv shows!</string>
+    <string name="alarm_release_reminder_title">Release Reminder</string>
+    <string name="alarm_release_reminder_label">New movie release! Check it out.</string>
 </resources>

@@ -36,7 +36,8 @@
         </activity>
 
         <activity android:name=".mvvm.MainActivity" />
-        <activity android:name=".mvvm.detail.DetailActivity" />
+        <activity android:name=".mvvm.detail.DetailActivity"
+            android:parentActivityName=".mvvm.MainActivity"/>
 
         <provider
             android:name=".data.MyContentProvider"
