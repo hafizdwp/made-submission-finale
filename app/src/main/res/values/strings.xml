@@ -35,4 +35,8 @@
     <string name="other">Other</string>
     <string name="language">Language</string>
     <string name="error_exception">Something wrong with your code</string>
+    <string name="alarm_daily_activated">Daily Reminder activated</string>
+    <string name="alarm_release_activated">New Release reminder activated</string>
+    <string name="alarm_daily_deactivated">Daily Reminder deactivated</string>
+    <string name="alarm_release_deactivated">New Release reminder deactivated</string>
 </resources>

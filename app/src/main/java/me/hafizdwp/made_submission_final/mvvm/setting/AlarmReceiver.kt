@@ -5,10 +5,10 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import me.hafizdwp.made_submission_final.R
 import me.hafizdwp.made_submission_final.util.MyNotification
 import me.hafizdwp.made_submission_final.util.ext.log
+import me.hafizdwp.made_submission_final.util.ext.toast
 import java.util.*
 
 /**
@@ -57,7 +57,16 @@ class AlarmReceiver : BroadcastReceiver() {
                     pendingIntent
             )
 
-            Toast.makeText(context, "Repeating Alarm Activated", Toast.LENGTH_LONG).show()
+            context.toast {
+                when (type) {
+                    AlarmType.DAILY -> {
+                        context.getString(R.string.alarm_daily_activated)
+                    }
+                    AlarmType.RELEASE -> {
+                        context.getString(R.string.alarm_release_activated)
+                    }
+                }
+            }
         }
 
         fun cancelAlarm(context: Context, type: AlarmType) {
@@ -70,7 +79,16 @@ class AlarmReceiver : BroadcastReceiver() {
             pendingIntent.cancel()
             alarmManager.cancel(pendingIntent)
 
-            Toast.makeText(context, "Repeating Alarm Deactivated", Toast.LENGTH_LONG).show()
+            context.toast {
+                when (type) {
+                    AlarmType.DAILY -> {
+                        context.getString(R.string.alarm_daily_deactivated)
+                    }
+                    AlarmType.RELEASE -> {
+                        context.getString(R.string.alarm_release_deactivated)
+                    }
+                }
+            }
         }
     }
 

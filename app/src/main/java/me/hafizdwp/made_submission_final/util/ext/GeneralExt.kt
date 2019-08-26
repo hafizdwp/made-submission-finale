@@ -1,5 +1,6 @@
 package me.hafizdwp.made_submission_final.util.ext
 
+import android.content.Context
 import android.content.res.Resources
 import android.util.Log
 import android.widget.Toast
@@ -67,6 +68,14 @@ fun AppCompatActivity.toast(msg: String) {
         mToast?.cancel()
 
     mToast = Toast.makeText(this, msg, Toast.LENGTH_LONG)
+    mToast?.show()
+}
+
+fun Context.toast(message: () -> String) {
+    if (mToast != null)
+        mToast?.cancel()
+
+    mToast = Toast.makeText(this, message(), Toast.LENGTH_LONG)
     mToast?.show()
 }
 
