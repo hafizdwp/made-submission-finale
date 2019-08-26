@@ -4,8 +4,8 @@
     package="me.hafizdwp.made_submission_final">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <permission
         android:name="me.hafizdwp.made_submission_final.READ_DATABASE"

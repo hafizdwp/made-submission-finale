@@ -26,4 +26,21 @@
     <string name="first_air_date">First Air Date</string>
     <string name="number_of_seasons">Number of Seasons</string>
     <string name="status">Status</string>
+    <string name="title_setting">Setting</string>
+    <string name="release_reminder">Release Reminder</string>
+    <string name="release_reminder_desc">Reminder showing the movie that released today</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="daily_reminder_desc">Reminder to return to app</string>
+    <string name="reminder">Reminder</string>
+    <string name="other">Other</string>
+    <string name="language">Language</string>
+    <string name="error_exception">Something wrong with your code</string>
+    <string name="alarm_daily_activated">Daily reminder activated</string>
+    <string name="alarm_release_activated">New Release reminder activated</string>
+    <string name="alarm_daily_deactivated">Daily Reminder deactivated</string>
+    <string name="alarm_release_deactivated">New Release reminder deactivated</string>
+    <string name="alarm_daily_reminder_title">Daily Reminder</string>
+    <string name="alarm_daily_reminder_label">Start your day by checking the popular movies or tv shows!</string>
+    <string name="alarm_release_reminder_title">Release Reminder</string>
+    <string name="alarm_release_reminder_label">New movie release! Check it out.</string>
 </resources>

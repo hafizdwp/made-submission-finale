@@ -26,4 +26,21 @@
     <string name="first_air_date">Tanggal Mengudara</string>
     <string name="number_of_seasons">Jumlah Season</string>
     <string name="status">Status</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="release_reminder_desc">Mengingatkan untuk memberitahu film yang rilis hari ini</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="daily_reminder_desc">Mengingatkan untuk kembali ke aplikasi</string>
+    <string name="reminder">Pengingat</string>
+    <string name="other">Lainnya</string>
+    <string name="language">Bahasa</string>
+    <string name="error_exception">Something wrong with your code</string>
+    <string name="alarm_daily_activated">Pengingat harian diaktifkan</string>
+    <string name="alarm_release_activated">Pengingat rilis baru diaktifkan</string>
+    <string name="alarm_daily_deactivated">Pengingat harian dibatalkan</string>
+    <string name="alarm_release_deactivated">Pengingat rilis baru dibatalkan</string>
+    <string name="alarm_daily_reminder_title">Pengingat Harian</string>
+    <string name="alarm_daily_reminder_label">Mulai harimu dengan menelusuri film atau acara tv yang populer!</string>
+    <string name="alarm_release_reminder_title">Pengingat Rilis</string>
+    <string name="alarm_release_reminder_label">Film baru rilis! Cekidot.</string>
 </resources>
